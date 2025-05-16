@@ -1,0 +1,356 @@
+﻿@model IEnumerable<DEPI_Project.Models.CorpMgmt_System.ShiftSchedule>
+@{
+    ViewData["Title"] = "Shift Schedules";
+    Layout = "_testLayout";
+}
+<link href="/css/prostyle.css" rel="stylesheet" />
+
+<div class="container my-4">
+    <!-- Page Title -->
+    <div class="page-title d-flex align-items-center">
+        <i class="fas fa-calendar-alt fa-lg"></i>
+        <span>Shift Schedules</span>
+    </div>
+
+    <!-- Search Filters -->
+    <div class="mb-3">
+        <div class="d-flex align-items-center ps-3 py-2" style="background-color: #e9f0fc; color: #007bff; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+            <i class="fas fa-filter me-2"></i>
+            <span>Search Filters</span>
+        </div>
+        <div class="p-3" style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input type="text" id="nameSearchInput" class="form-control" placeholder="Employee Name">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                        <input type="date" id="dateSearchInput" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-tag"></i></span>
+                        <select id="typeSearchInput" class="form-select">
+                            <option value="">All Types</option>
+                            <option value="Day">Day</option>
+                            <option value="Night">Night</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
+                        <select id="statusSearchInput" class="form-select">
+                            <option value="">All Status</option>
+                            <option value="Scheduled">Scheduled</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Canceled">Canceled</option>
+                            <option value="Pending">Pending</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="d-flex justify-content-between align-items-center px-3 py-2" style="background-color: #e9f0fc; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+
+        <div>
+            <span class="text-primary fw-bold">Total Records: <span id="totalRecords">@Model.Count()</span></span>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <a asp-action="ExportToExcel" class="btn btn-primary circle-btn" title="Download Excel">
+                <i class="fas fa-download"></i>
+            </a>
+
+            <div class="d-flex align-items-center gap-3">
+                <a asp-action="Add" asp-controller="ShiftSchedule" class="btn btn-success circle-btn" title="Add New">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </div>
+
+            <!-- زر الحذف المخفي -->
+            <button id="deleteSelectedBtn" type="submit" class="btn p-0 d-none btntable">
+                <img src="/image/delete.png" alt="Delete" />
+            </button>
+        </div>
+       
+        
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive" style="overflow-x: auto;">
+        <table class="table table-hover align-middle text-center" id="shiftTable" style="min-width: 1600px;">
+            <thead class="table-light">
+                <tr>
+                    <th style="min-width: 150px;">Employee</th>
+                    <th style="min-width: 150px;">Manager</th>
+                    <th style="min-width: 120px;">Shift Date</th>
+                    <th style="min-width: 120px;">Start Time</th>
+                    <th style="min-width: 120px;">End Time</th>
+                    <th style="min-width: 100px;">Total Hours</th>
+                    <th style="min-width: 120px;">Type</th>
+                    <th style="min-width: 120px;">Status</th>
+                    <th style="min-width: 150px;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="prow">
+                        <td>@item.Employee?.UserName</td>
+                        <td>@item.Manager?.UserName</td>
+                        <td>@item.ShiftDate.ToString("MM/dd/yyyy")</td>
+                        <td>@item.StartTime.ToString("hh:mm tt")</td>
+                        <td>@item.EndTime.ToString("hh:mm tt")</td>
+                        <td>@item.TotalHours().ToString("F2") hours</td>
+                        <td>
+                            @{
+                                string badgeClass = item.ShiftType switch
+                                {
+                                    ShiftType.Day => "bg-info",
+                                    ShiftType.Night => "bg-dark text-white",
+                                    _ => "bg-secondary"
+                                };
+                            }
+                            <span class="badge @badgeClass">@item.ShiftType?.ToString()</span>
+                        </td>
+                        <td>
+                            @{
+                                string statusClass = item.Status switch
+                                {
+                                    ShiftStatus.Scheduled => "active",
+                                    ShiftStatus.Completed => "active",
+                                    ShiftStatus.Canceled => "inactive",
+                                    ShiftStatus.Pending => "pending",
+                                    _ => ""
+                                };
+                            }
+                            <span class="badge-status @statusClass">@item.Status?.ToString()</span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center justify-content-center">
+                                @if (item.Status == ShiftStatus.Pending || item.Status == ShiftStatus.Scheduled)
+                                {
+                                    <a asp-action="MarkComplete" asp-controller="ShiftSchedule" asp-route-id="@item.ScheduleId" class="btn p-0 me-2 circle-btn btn-success" title="Mark Complete">
+                                        <i class="fas fa-check"></i>
+                                    </a>
+                                    <a asp-action="Cancel" asp-controller="ShiftSchedule" asp-route-id="@item.ScheduleId" class="btn p-0 me-2 circle-btn btn-danger" title="Cancel">
+                                        <i class="fas fa-times"></i>
+                                    </a>
+                                }
+                                <a asp-action="Edit" asp-controller="ShiftSchedule" asp-route-id="@item.ScheduleId" class="btn p-0 me-2 circle-btn btn-primary" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form asp-controller="ShiftSchedule" asp-action="Delete" asp-route-id="@item.ScheduleId" method="post" onsubmit="return confirm('Are you sure about the deletion?');" style="display:inline;">
+                                    <button type="submit" class="btn p-0 circle-btn btn-danger" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-end">
+            <!-- Pagination will be dynamically generated by JavaScript -->
+        </ul>
+    </nav>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="/js/Pagination.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nameSearchInput = document.getElementById('nameSearchInput');
+            const dateSearchInput = document.getElementById('dateSearchInput');
+            const typeSearchInput = document.getElementById('typeSearchInput');
+            const statusSearchInput = document.getElementById('statusSearchInput');
+            const table = document.getElementById('shiftTable');
+            const tbody = table.getElementsByTagName('tbody')[0];
+            const rows = Array.from(tbody.getElementsByTagName('tr'));
+            const totalRecords = document.getElementById('totalRecords');
+            const pagination = document.getElementById('pagination');
+
+            const rowsPerPage = 5;
+            let currentPage = 1;
+            let filteredRows = rows;
+
+            function filterRows() {
+                const nameFilter = nameSearchInput.value.toLowerCase().trim();
+                const dateFilter = dateSearchInput.value;
+                const typeFilter = typeSearchInput.value.toLowerCase();
+                const statusFilter = statusSearchInput.value.toLowerCase();
+
+                filteredRows = rows.filter(row => {
+                    const employeeName = row.cells[0].textContent.toLowerCase();
+                    const shiftDate = row.cells[2].textContent;
+                    const shiftType = row.cells[6].textContent.toLowerCase();
+                    const shiftStatus = row.cells[7].textContent.toLowerCase();
+
+                    const matchesName = !nameFilter || employeeName.includes(nameFilter);
+                    const matchesDate = !dateFilter || new Date(shiftDate).toISOString().split('T')[0] === dateFilter;
+                    const matchesType = !typeFilter || shiftType === typeFilter;
+                    const matchesStatus = !statusFilter || shiftStatus === statusFilter;
+
+                    return matchesName && matchesDate && matchesType && matchesStatus;
+                });
+
+                totalRecords.textContent = filteredRows.length;
+                currentPage = 1;
+                displayRows();
+                updatePagination();
+            }
+
+            function displayRows() {
+                const start = (currentPage - 1) * rowsPerPage;
+                const end = start + rowsPerPage;
+
+                rows.forEach(row => row.style.display = 'none');
+                filteredRows.slice(start, end).forEach(row => row.style.display = '');
+            }
+
+            function updatePagination() {
+                const pageCount = Math.ceil(filteredRows.length / rowsPerPage);
+                pagination.innerHTML = '';
+
+                if (pageCount <= 1) return;
+
+                // Previous Button
+                const prevLi = document.createElement('li');
+                prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+                prevLi.innerHTML = '<a class="page-link" href="#">Previous</a>';
+                prevLi.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (currentPage > 1) {
+                        currentPage--;
+                        displayRows();
+                        updatePagination();
+                    }
+                });
+                pagination.appendChild(prevLi);
+
+                // Page Numbers
+                for (let i = 1; i <= pageCount; i++) {
+                    const li = document.createElement('li');
+                    li.className = `page-item ${i === currentPage ? 'active' : ''}`;
+                    li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+                    li.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        currentPage = i;
+                        displayRows();
+                        updatePagination();
+                    });
+                    pagination.appendChild(li);
+                }
+
+                // Next Button
+                const nextLi = document.createElement('li');
+                nextLi.className = `page-item ${currentPage === pageCount ? 'disabled' : ''}`;
+                nextLi.innerHTML = '<a class="page-link" href="#">Next</a>';
+                nextLi.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (currentPage < pageCount) {
+                        currentPage++;
+                        displayRows();
+                        updatePagination();
+                    }
+                });
+                pagination.appendChild(nextLi);
+            }
+
+            // Event listeners for filters
+            nameSearchInput.addEventListener('input', filterRows);
+            dateSearchInput.addEventListener('change', filterRows);
+            typeSearchInput.addEventListener('change', filterRows);
+            statusSearchInput.addEventListener('change', filterRows);
+
+            // Initial display
+            filterRows();
+        });
+    </script>
+}
+
+<style>
+    .page-title {
+        font-size: 28px;
+        font-weight: bold;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+        .page-title i {
+            margin-right: 10px;
+            color: #007bff;
+        }
+
+    .circle-btn {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .btn-success.circle-btn {
+        background-color: #28a745;
+        border: none;
+    }
+
+    .btn-primary.circle-btn {
+        background-color: #007bff;
+        border: none;
+    }
+
+    .btn-danger.circle-btn {
+        background-color: #dc3545;
+        border: none;
+    }
+
+    table tbody tr:hover {
+        background-color: #f1f1f1;
+        cursor: pointer;
+    }
+
+    .badge-status {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        display: inline-block;
+        min-width: 80px;
+    }
+
+        .badge-status.active {
+            background-color: #dff5e7;
+            color: #28a745;
+        }
+
+        .badge-status.inactive {
+            background-color: #fdeeee;
+            color: #dc3545;
+        }
+
+        .badge-status.pending {
+            background-color: #fff3cd;
+            color: #ffc107;
+        }
+</style>

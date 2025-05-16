@@ -1,0 +1,231 @@
+﻿@model IEnumerable<DEPI_Project.Models.CorpMgmt_System.Attendance>
+@{
+    ViewData["Title"] = "Attendance";
+    Layout = "_testLayout";
+}
+<link href="/css/prostyle.css" rel="stylesheet" />
+
+<div class="container my-4">
+    <!-- Page Title -->
+    <div class="page-title d-flex align-items-center">
+        <i class="fas fa-clock fa-lg"></i>
+        <span>Attendance</span>
+    </div>
+
+    <!-- Search Filters -->
+    <div class="mb-3">
+        <div class="d-flex align-items-center ps-3 py-2" style="background-color: #0d6efd; color: white; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+            <i class="fas fa-filter me-2"></i>
+            <span>Search Filters</span>
+        </div>
+        <div class="p-3" style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input type="text" id="nameSearchInput" class="form-control" placeholder="Employee Name">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                        <input type="text" id="dateSearchInput" class="form-control" placeholder="Date (MM/DD/YYYY)">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
+                        <select id="statusSearchInput" class="form-select">
+                            <option value="">All Status</option>
+                            <option value="present">Present</option>
+                            <option value="absent">Absent</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="d-flex justify-content-between align-items-center px-3 py-2" style="background-color: #e9f0fc; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+        <div>
+            <span class="text-primary fw-bold">Total Records: <span id="totalRecords">@Model.Count()</span></span>
+        </div>
+
+        <div class="d-flex align-items-center gap-3">
+            <a asp-action="ExportAttendanceToExcel" class="btn btn-primary circle-btn" title="Download Excel">
+                <i class="fas fa-download"></i>
+            </a>
+
+            <a asp-action="Add" asp-controller="Attendance" class="btn btn-success circle-btn" title="Add New">
+                <i class="fas fa-plus"></i>
+            </a>
+
+            <!-- Delete button (hidden by default) -->
+            <button id="deleteSelectedBtn" type="submit" class="btn btn-danger circle-btn d-none" title="Delete Selected">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive" style="overflow-x: auto;">
+        <table class="table table-hover align-middle text-center">
+            <thead class="table-light">
+                <tr>
+                    <th style="min-width: 60px;">
+                        <input type="checkbox" id="select-all" />
+                    </th>
+                    <th style="min-width: 150px;">Employee Name</th>
+                    <th style="min-width: 150px;">Date</th>
+                    <th style="min-width: 150px;">Time In</th>
+                    <th style="min-width: 150px;">Time Out</th>
+                    <th style="min-width: 150px;">Total Hours</th>
+                    <th style="min-width: 150px;">Status</th>
+                    <th style="min-width: 100px;">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><input type="checkbox" class="row-checkbox" /></td>
+                        <td>@item.Employee?.UserName</td>
+                        <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                        <td>@item.TimeIn.ToString(@"hh\:mm")</td>
+                        <td>@item.TimeOut.ToString(@"hh\:mm")</td>
+                        <td>@item.TotalHours().ToString(@"hh\:mm")</td>
+                        <td>
+                            @if (item.Status.ToString() == "Present")
+                            {
+                                <span class="badge-status active">Present</span>
+                            }
+                            else if (item.Status.ToString() == "Absent")
+                            {
+                                <span class="badge-status inactive">Absent</span>
+                            }
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <a asp-action="Edit" asp-controller="Attendance" asp-route-id="@item.AttendanceId" class="btn p-0 me-2" style="cursor: pointer;">
+                                    <img src="/image/edit.png" alt="Edit" />
+                                </a>
+
+                                <form asp-controller="Attendance" asp-action="Delete" asp-route-id="@item.AttendanceId" method="post"
+                                      onsubmit="return confirm('Are you sure about the deletion?');" style="display:inline;">
+                                    <button type="submit" class="btn p-0" style="border: none; background: none; padding: 0; cursor: pointer;">
+                                        <img src="/image/delete.png" alt="Delete" />
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-end">
+            <!-- Pagination will be dynamically generated by JavaScript -->
+        </ul>
+    </nav>
+</div>
+
+<!-- Modal for attendance details -->
+<div class="modal fade" id="attendanceDetailsModal" tabindex="-1" aria-labelledby="attendanceDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="attendanceDetailsModalLabel">Attendance Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="attendanceDetails"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="/js/attendance-script.js"></script>
+}
+
+<style>
+    .page-title {
+        font-size: 28px;
+        font-weight: bold;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+        .page-title i {
+            margin-right: 10px;
+            color: #007bff;
+        }
+
+    .btntable {
+        border: none;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .circle-btn {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .btn-primary.circle-btn {
+        background-color: #007bff;
+        border: none;
+    }
+
+    .btn-success.circle-btn {
+        background-color: #28a745;
+        border: none;
+    }
+
+    table tbody tr:hover {
+        background-color: #f1f1f1;
+        cursor: pointer;
+    }
+
+    .badge-status {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        display: inline-block;
+        min-width: 80px;
+    }
+
+        .badge-status.active {
+            background-color: rgba(25, 135, 84, 0.15);
+            color: #198754;
+            border-radius: 4px;
+            padding:5px;
+        }
+
+        .badge-status.inactive {
+            background-color: rgba(241, 21, 65, 0.15);
+            color: #F11541;
+            border-radius: 4px;
+            padding: 5px;
+        }
+</style>

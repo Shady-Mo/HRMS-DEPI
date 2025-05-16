@@ -1,0 +1,47 @@
+﻿@model List<DEPI_Project.Models.CorpMgmt_System.Project>
+
+@{
+    ViewData["Title"] = "Project";
+    Layout = "_EmpLayout";
+}
+
+<link href="/css/EmpDash/EmpTable.css" rel="stylesheet" />
+
+<div class="container-fluid py-4">
+    @* <h2 class="text-center mb-4">Your Projects</h2> *@
+
+    <div class="attendance-table-card">
+        <table class="table table-striped custom-attendance-table text-center">
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Department</th>
+                    <th>Start Date</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Team</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var project in Model)
+                {
+                    <tr>
+                        <td>@project.Name</td>
+                        <td>@project.Department?.Name</td>
+                        <td>@project.StartDate.ToString("MM/dd/yyyy")</td>
+                        <td>@project.DueDate.ToString("MM/dd/yyyy")</td>
+                        <td>@project.Status</td>
+                        <td class="text-start">
+                            <ul class="list-unstyled mb-0">
+                                @foreach (var emp in project.AssignedEmployees)
+                                {
+                                    <li>@emp.Employee?.FirstName @emp.Employee?.LastName</li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<!-- [Head] start -->
+<head>
+    <title>@ViewData["Title"]</title>
+    <!-- [Meta] -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <!-- [Favicon] icon -->
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/x-icon"> <!-- [Google Font] Family -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" id="main-font-link">
+    <!-- [Tabler Icons] https://tablericons.com -->
+    <link rel="stylesheet" href="/assets/fonts/tabler-icons.min.css" >
+    <!-- [Feather Icons] https://feathericons.com -->
+    <link rel="stylesheet" href="/assets/fonts/feather.css" >
+    <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
+    <link rel="stylesheet" href="/assets/fonts/fontawesome.css" >
+    <!-- [Material Icons] https://fonts.google.com/icons -->
+    <link rel="stylesheet" href="/assets/fonts/material.css" >
+    <!-- [Template CSS Files] -->
+    <link rel="stylesheet" href="/assets/css/style.css" id="main-style-link" >
+    <link rel="stylesheet" href="/assets/css/style-preset.css" >
+
+</head>
+
+
+<!-- [Body] Start -->
+<body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+
+    <!-- [ Sidebar Menu ] start -->
+    <nav class="pc-sidebar">
+        <div class="navbar-wrapper">
+            <div class="m-header">
+                <a asp-action="Index" asp-controller="DashboardEmployee" class="b-brand text-primary mt-2">
+                    <!-- ========   Change your logo from here   ============ -->
+                    <img src="/assets/img/Logoemp2.jpeg" style="width:98%" alt="logo">
+                </a>
+            </div>
+            <div class="navbar-content">
+                <ul class="pc-navbar">
+                    <li class="pc-item">
+                        <a asp-action="Index" asp-controller="DashboardEmployee" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
+                            <span class="pc-mtext">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="pc-item pc-caption">
+                        <label>Pages</label>
+                        <i class="ti ti-news"></i>
+                    </li>
+                    <li class="pc-item">
+                        <a class="pc-link" asp-action="Profile" asp-controller="Employee">
+                            <span class="pc-micon"><i class="ti ti-user"></i></span>
+                            <span class="pc-mtext">Profile</span>
+                        </a>
+                    </li>
+                    <li class="pc-item">
+                        <a class="pc-link" asp-action="EmpAttendance" asp-controller="Employee">
+                            <span class="pc-micon"><i class="ti ti-user-check"></i></span>
+
+                            <span class="pc-mtext">Attendance</span>
+                        </a>
+                    </li>
+
+
+                    <li class="pc-item">
+                        <a class="pc-link" asp-action="IndexEmp" asp-controller="Holiday">
+                            <span class="pc-micon"><i class="ti ti-calendar-off"></i></span>
+
+                            <span class="pc-mtext">Holidays</span>
+                        </a>
+                    </li>
+                    <li class="pc-item pc-hasmenu">
+                        <a href="#!" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-menu"></i></span><span class="pc-mtext">
+                                Leaves
+                            </span><span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                        </a>
+                        <ul class="pc-submenu">
+                            <li class="pc-item"><a class="pc-link" asp-action="EmpLeave" asp-controller="Employee">Leave List</a></li>
+                            <li class="pc-item"><a class="pc-link" asp-action="AddLeave" asp-controller="Employee">Request Leave</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="pc-item">
+                        <a asp-action="GetProjects" asp-controller="Project" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti-folder"></i></span>
+                            <span class="pc-mtext">Project</span>
+                        </a>
+                    </li>
+                    @if (User.IsInRole("Employee"))
+                    {
+                        <li class="pc-item">
+                            <a asp-action="EmpTask" asp-controller="Task" class="pc-link">
+                                <span class="pc-micon"><i class="ti ti-clipboard-list"></i></span>
+                                <span class="pc-mtext">Tasks</span>
+                            </a>
+                        </li>
+
+                    }
+                    @if (User.IsInRole("Manager"))
+                    {
+                        <li class="pc-item">
+                            <a asp-action="Index" asp-controller="Task" class="pc-link">
+                                <span class="pc-micon"><i class="ti ti-clipboard-list"></i></span>
+                                <span class="pc-mtext">Tasks</span>
+                            </a>
+                        </li>
+                       
+                        @* <li class="pc-item"> *@
+                        @*     <a asp-action="Index" asp-controller="Performance" class="pc-link"> *@
+                        @*         <span class="pc-micon"><i class="ti ti-chart-bar"></i></span> *@
+                        @*         <span class="pc-mtext">Performance</span> *@
+                        @*     </a> *@
+                        @* </li> *@
+                      
+                    }
+                    <li class="pc-item">
+                        <form asp-action="Logout" asp-controller="Auth" method="post" style="display:inline;" class="pc-link">
+                            <button type="submit" class="pc-link" style="background:none;border:none;padding:0;cursor: pointer;">
+                                <span class="pc-micon"><i class="ti ti-logout"></i></span>
+                                <span class="pc-mtext">LogOut</span>
+                            </button>
+                        </form>
+                    </li>
+                   
+                    
+       
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+
+
+<!-- [ Header Topbar ] -->
+<header class="pc-header">
+  <div class="header-wrapper">
+  <!-- [search] start -->
+<div class="me-auto pc-mob-drp">
+  <ul class="list-unstyled">
+    <!-- ======= Menu collapse Icon ===== -->
+    <li class="pc-h-item pc-sidebar-collapse">
+      <a href="#" class="pc-head-link ms-0" id="sidebar-hide">
+        <i class="ti ti-menu-2"></i>
+      </a>
+    </li>
+    <li class="pc-h-item pc-sidebar-popup">
+      <a href="#" class="pc-head-link ms-0" id="mobile-collapse">
+        <i class="ti ti-menu-2"></i>
+      </a>
+    </li>
+    <li class="dropdown pc-h-item d-inline-flex d-md-none">
+      <a
+        class="pc-head-link dropdown-toggle arrow-none m-0"
+        data-bs-toggle="dropdown"
+        href="#"
+        role="button"
+        aria-haspopup="false"
+        aria-expanded="false"
+      >
+        <i class="ti ti-search"></i>
+      </a>
+      <div class="dropdown-menu pc-h-dropdown drp-search">
+        <form class="px-3">
+          <div class="form-group mb-0 d-flex align-items-center">
+            <i data-feather="search"></i>
+            <input type="search" class="form-control border-0 shadow-none" placeholder="Search here. . .">
+          </div>
+        </form>
+      </div>
+    </li>
+    <li class="pc-h-item d-none d-md-inline-flex">
+      <form class="header-search">
+        <i data-feather="search" class="icon-search"></i>
+        <input type="search" class="form-control" placeholder="Search here. . .">
+      </form>
+    </li>
+  </ul>
+</div>
+<!-- [ email & name] -->
+<div class="ms-auto">
+  <ul class="list-unstyled">
+    <li class="dropdown pc-h-item">
+      <a
+        class="pc-head-link dropdown-toggle arrow-none me-0"
+        data-bs-toggle="dropdown"
+        href="#"
+        role="button"
+        aria-haspopup="false"
+        aria-expanded="false"
+      >
+        <i class="ti ti-mail"></i>
+      </a>
+      <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown">
+        <div class="dropdown-header d-flex align-items-center justify-content-between">
+          <h5 class="m-0">Message</h5>
+          <a href="#!" class="pc-head-link bg-transparent"><i class="ti ti-x text-danger"></i></a>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="dropdown-header px-0 text-wrap header-notification-scroll position-relative" style="max-height: calc(100vh - 215px)">
+          <div class="list-group list-group-flush w-100">
+            <a class="list-group-item list-group-item-action">
+              <div class="d-flex">
+                <div class="flex-shrink-0">
+                  <img src="/assets/img/users.png" alt="user-image" class="user-avtar">
+                </div>
+                <div class="flex-grow-1 ms-1">
+                  <span class="float-end text-muted">9:10 PM</span>
+                  <p class="text-body mb-1"><b>Cristina Danny </b> invited to join <b> Meeting.</b></p>
+                  <span class="text-muted">Daily scrum meeting time</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="text-center py-2">
+          <a href="#!" class="link-primary">View all</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="dropdown pc-h-item header-user-profile">
+         <img src="/assets/img/users.png" alt="user-image" class="user-avtar"> 
+        <span>Name</span>
+     </li>
+  </ul>
+</div>
+ </div>
+</header>
+
+
+  <!-- [ Main Content ]  -->
+    <div class="pc-container">
+    <div class="pc-content">
+      <!-- [ breadcrumb ] start -->
+      <div class="page-header">
+        <div class="page-block">
+          <div class="row align-items-center">
+            <div class="col-md-12">
+              <div class="page-header-title">
+                <h5 class="m-b-10">Home</h5>
+              </div>
+              <ul class="breadcrumb">
+               <li class="breadcrumb-item"><a asp-action="Index" asp-controller="DashboardEmployee">Home</a></li>
+               <li class="breadcrumb-item" aria-current="page">@ViewData["Title"]</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- [ Main Content ] start -->
+      <div class="row">
+       
+                @RenderBody()   
+      </div>
+
+       <footer class="pc-footer">
+        <div class="footer-wrapper container-fluid">
+        <div class="row">
+        <div class="col-auto my-1">
+       
+        </div>
+      </div>
+    </div>
+
+  </footer>
+  </div>
+  </div>
+
+  <!-- [JS]  -->
+  <script src="/assets/js/plugins/apexcharts.min.js"></script>
+  <script src="../assets/js/pages/dashboard-default.js"></script>
+  <script src="/assets/js/plugins/popper.min.js"></script>
+  <script src="/assets/js/plugins/simplebar.min.js"></script>
+  <script src="/assets/js/plugins/bootstrap.min.js"></script>
+  <script src="/assets/js/fonts/custom-font.js"></script>
+  <script src="/assets/js/pcoded.js"></script>
+  <script src="/assets/js/plugins/feather.min.js"></script>
+  <script>layout_change('light');</script>
+  <script>change_box_container('false');</script>
+  <script>layout_rtl_change('false');</script>
+  <script>preset_change("preset-1");</script>
+  <script>font_change("Public-Sans");</script>
+
+    @RenderSection("Scripts", required: false)
+    
+
+</body>
+
+
+</html>

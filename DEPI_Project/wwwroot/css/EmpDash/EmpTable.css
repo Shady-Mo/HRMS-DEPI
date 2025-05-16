@@ -1,0 +1,147 @@
+ /* أنماط عامة للصفحة */
+ body {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     background-color: #f4f7f6;
+ }
+
+ .page-header {
+     color: #343a40; /* لون أغمق للعنوان */
+     padding-bottom: 10px;
+     /* border-bottom: 2px solid #007bff; /* خط سفلي بلون مميز */
+     /* display: inline-block;  لجعل الخط السفلي بعرض النص فقط */
+     font-weight: 600;
+ }
+
+
+ .attendance-controls-card { 
+     /* background-color: transparent;  */
+     /* padding: 25px; */
+ /*     border-radius: 12px; */
+ /*     box-shadow: 0 6px 20px rgba(0,0,0,0.08); */
+     margin-bottom: 30px; 
+  }
+
+     .attendance-controls-card .btn {
+         padding: 12px 25px;
+         font-size: 1.05rem;
+         font-weight: 500;
+         border-radius: 8px;
+         transition: all 0.2s ease-in-out;
+     }
+
+     .attendance-controls-card .btn-success:hover {
+         background-color: #198754;
+         border-color: #198754;
+         transform: translateY(-2px);
+     }
+
+     .attendance-controls-card .btn-danger:hover {
+         background-color: #dc3545;
+         border-color: #dc3545;
+         transform: translateY(-2px);
+     }
+
+     .attendance-controls-card .alert {
+         padding: 0.8rem 1.25rem;
+         border-radius: 8px;
+     }
+
+
+
+ .attendance-table-card {
+     background-color: #ffffff;
+     padding: 25px;
+     border-radius: 12px;
+     box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+     overflow-x: auto;
+ }
+
+
+ .table.custom-attendance-table {
+     margin-bottom: 0;
+     border-collapse: separate;
+     border-spacing: 0;
+ }
+
+     .table.custom-attendance-table thead th {
+         background-color: #343a40;
+         color: #ffffff;
+         border-color: #454d55;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+         font-weight: 600;
+         font-size: 0.9rem;
+         padding: 0.9rem 0.75rem;
+     }
+
+         /* تطبيق زوايا دائرية على الخلية الأولى والأخيرة في رأس الجدول */
+         .table.custom-attendance-table thead th:first-child {
+             border-top-left-radius: 8px;
+         }
+
+         .table.custom-attendance-table thead th:last-child {
+             border-top-right-radius: 8px;
+         }
+
+     /* تطبيق زوايا دائرية على الخلية الأولى والأخيرة في آخر صف في جسم الجدول */
+     .table.custom-attendance-table tbody tr:last-child td:first-child {
+         border-bottom-left-radius: 8px;
+     }
+
+     .table.custom-attendance-table tbody tr:last-child td:last-child {
+         border-bottom-right-radius: 8px;
+     }
+
+
+     .table.custom-attendance-table tbody tr:hover {
+         background-color: #e9ecef; /* لون خلفية عند مرور الفأرة على الصف */
+     }
+
+     .table.custom-attendance-table td,
+     .table.custom-attendance-table th {
+         vertical-align: middle; /* محاذاة عمودية للمحتوى في المنتصف */
+         padding: 0.85rem 0.75rem; /* تعديل الحشوة داخل الخلايا */
+         border-bottom: 1px solid #dee2e6; /* خط أفقي فقط بين الصفوف */
+         border-top: none;
+         border-left: none;
+         border-right: none;
+     }
+
+     .table.custom-attendance-table thead th {
+         border-bottom-width: 2px;
+     }
+
+
+     .table.custom-attendance-table.table-bordered {
+         border: none;
+     }
+
+         .table.custom-attendance-table.table-bordered th,
+         .table.custom-attendance-table.table-bordered td {
+             border: none;
+         }
+
+
+
+ .badge {
+     padding: 0.55em 0.8em;
+     font-size: 0.8rem;
+     font-weight: 500;
+ }
+
+     .badge.bg-success {
+         background-color: #28a745 !important;
+     }
+
+     .badge.bg-secondary {
+         background-color: #6c757d !important;
+     }
+
+     .badge.bg-warning {
+         background-color: #ffc107 !important;
+         color: #212529 !important;
+     }
+
+     .badge.bg-danger {
+         background-color: #dc3545 !important;
+     }

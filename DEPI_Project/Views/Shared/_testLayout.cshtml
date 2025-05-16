@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- CUSTOM STYLES FOR NAVBAR AND SIDENAV -->
+    <style>
+        .sb-topnav {
+            background: linear-gradient(to right, #5c5f70,#262938) !important;
+            /* Apply new background color */
+        }
+
+        .sb-sidenav-dark {
+            /* background: linear-gradient(to bottom, #222533, #4c4f60) !important;  Apply new background color to sidenav */ 
+            background-color: #222533 !important;
+        }
+
+            /* Sidenav text and icon color to white */
+            .sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading,
+            .sb-sidenav-dark .sb-sidenav-menu .nav-link, /* Targets the link text directly */
+            .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon, /* Targets icons within links */
+            .sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-sidenav-collapse-arrow, /* Targets collapse arrows */
+            .sb-sidenav-dark .sb-sidenav-menu-nested .nav .nav-link { /* Targets nested navigation links */
+                color: #cccccc !important;
+            }
+
+        /* Optional: If text color needs adjustment on the new background,
+                   though navbar-dark and sb-sidenav-dark should handle this for topnav.
+                   The rules above handle sidenav text/icon color. */
+        /*
+                .sb-topnav.navbar-dark .navbar-brand,
+                .sb-topnav.navbar-dark .nav-link,
+                .sb-topnav.navbar-dark .btn-link {
+                     color: rgba(255, 255, 255, 0.9);
+                }
+                .sb-topnav.navbar-dark .btn-link:hover {
+                    color: #fff;
+                }
+                */
+    </style>
+    <!-- END CUSTOM STYLES -->
+
+</head>
+
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark">
+        <!-- Removed bg-dark, custom style will apply background -->
+        <!-- Navbar Brand-->
+        @* <a class="navbar-brand ps-3" href="index.html">STAFFORD</a> *@
+        <img src="/assets/img/Logo.jpeg" style="width:200px" class="navbar-brand " />
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" type="button">
+            <i id="toggleIcon" class="fas fa-bars"></i>
+        </button>
+        <!-- Navbar Search-->
+        @* <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"> *@
+        @*     <div class="input-group"> *@
+        @*         <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" /> *@
+        @*         <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button> *@
+        @*     </div> *@
+        @* </form> *@
+        <!-- Navbar-->
+        @* <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4"> *@
+        @*     <li class="nav-item dropdown"> *@
+        @*         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a> *@
+        @*         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"> *@
+        @*             <li><a class="dropdown-item" href="#!">Settings</a></li> *@
+        @*             <li><a class="dropdown-item" href="#!">Activity Log</a></li> *@
+        @*             <li><hr class="dropdown-divider" /></li> *@
+        @*             <li><a class="dropdown-item" href="#!">Logout</a></li> *@
+        @*         </ul> *@
+        @*     </li> *@
+        @* </ul> *@
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <!-- sb-sidenav-dark is kept, its background is overridden -->
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <a class="nav-link" asp-action="Index" asp-controller="DashboardAdmin">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Dashboard
+                        </a>
+
+                        <div class="sb-sidenav-menu-heading">Management</div>
+
+                        <!-- Employee -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEmployee"
+                           aria-expanded="false" aria-controls="collapseEmployee">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            User
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseEmployee" aria-labelledby="headingEmployee" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" asp-action="Index" asp-controller="Employee">Users List</a>
+                                <a class="nav-link" asp-action="Add" asp-controller="Employee">Add Employee</a>
+                            </nav>
+                        </div>
+                        
+                       
+                        <!-- Shift-->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLeader"
+                           aria-expanded="false" aria-controls="collapseLeader">
+                            <div class="sb-nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
+                            Shift
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLeader" aria-labelledby="headingLeader" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" asp-action="Index" asp-controller="ShiftSchedule">Shift List</a>
+                                <a class="nav-link" asp-action="Add" asp-controller="ShiftSchedule">Add Shift</a>
+                            </nav>
+                        </div>
+                        <!-- Department -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseDepartment"
+                           aria-expanded="false" aria-controls="collapseDepartment">
+                            <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
+                            Department
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseDepartment" aria-labelledby="headingDepartment" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" asp-action="Index" asp-controller="Department">Department List</a>
+                                <a class="nav-link" asp-action="Add" asp-controller="Department">Add Department</a>
+                            </nav>
+                        </div>
+
+
+                        <!-- Project -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProject"
+                           aria-expanded="false" aria-controls="collapseProject">
+                            <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
+                            Project
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseProject" aria-labelledby="headingProject" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" asp-action="Index" asp-controller="Project">Project List</a>
+                                <a class="nav-link" asp-action="Add" asp-controller="Project">Add Project</a>
+                            </nav>
+                        </div>
+
+
+
+                        <!-- Job -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseJob"
+                           aria-expanded="false" aria-controls="collapseJob">
+                            <div class="sb-nav-link-icon"><i class="fas fa-briefcase"></i></div>
+                            Job
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseJob" aria-labelledby="headingJob" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" asp-action="Index" asp-controller="Job">Job List</a>
+                                <a class="nav-link" asp-action="Add" asp-controller="Job">Add Job</a>
+                                <a class="nav-link" asp-action="Index" asp-controller="Candidate">Candidate</a>
+
+                            </nav>
+                        </div>
+                        <!-- Leave -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLeave"
+                           aria-expanded="false" aria-controls="collapseLeave">
+                            <div class="sb-nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
+                            Leave
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLeave" aria-labelledby="headingLeave" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" asp-action="Index" asp-controller="Leave">Leave List</a>
+                                
+                            </nav>
+                        </div>
+
+                        <!-- Holiday -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseHoliday"
+                           aria-expanded="false" aria-controls="collapseHoliday">
+                            <div class="sb-nav-link-icon"><i class="fas fa-sun"></i></div>
+                            Holiday
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseHoliday" aria-labelledby="headingHoliday" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" asp-action="Index" asp-controller="Holiday">Holiday List</a>
+                                <a class="nav-link" asp-action="Add" asp-controller="Holiday">Add Holiday</a>
+                            </nav>
+                        </div>
+                        <!-- Attendance -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAttendance"
+                           aria-expanded="false" aria-controls="collapseAttendance">
+                            <div class="sb-nav-link-icon"><i class="fas fa-user-check"></i></div>
+                            Attendance
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseAttendance" aria-labelledby="headingAttendance" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" asp-action="Index" asp-controller="Attendance">Attendance List</a>
+                                <a class="nav-link" asp-action="Add" asp-controller="Attendance">Add Attendance</a>
+                            </nav>
+                        </div>
+
+
+                        <!-- Reports -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReports"
+                           aria-expanded="false" aria-controls="collapseReports">
+                            <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
+                            Reports
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseReports" aria-labelledby="headingReports" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" asp-action="AttendanceReport" asp-controller="Reports">Attendance Report</a>
+                                <a class="nav-link" asp-action="LeaveReport" asp-controller="Reports">Leave Report</a>
+                                <a class="nav-link" asp-action="HolidayReport" asp-controller="Reports">Holiday Report</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                @* <div class="sb-sidenav-footer"> *@
+                    @* <div class="small">Logged in as:</div> *@
+                    @* Start Bootstrap *@
+                @* </div> *@
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4 mt-5">
+                    @RenderBody()
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright © Your Website 2025</div>
+
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="/assets/demo/chart-area-demo.js"></script>
+    <script src="/assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="/js/datatables-simple-demo.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+﻿@model Job
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_testLayout";
+}
+
+<form asp-action="SaveEdit" asp-controller="Job" asp-route-id="@Model.Id">
+
+    <partial name="FormJobPartial" />
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+

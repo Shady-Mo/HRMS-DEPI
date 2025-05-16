@@ -1,0 +1,19 @@
+﻿@model Performance
+@{
+    ViewData["Title"] = "Edit Employee";
+    Layout = "_EmpLayout";
+}
+
+<form asp-action="SaveEdit" asp-controller="Performance" asp-route-id="@Model.PerformanceId">
+
+    <partial name="FormPerformancePartial" />
+
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+

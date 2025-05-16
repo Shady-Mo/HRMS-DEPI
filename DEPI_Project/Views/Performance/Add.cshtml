@@ -1,0 +1,17 @@
+﻿@model Performance
+@{
+    ViewData["Title"] = "Add Employee";
+    Layout = "_EmpLayout";
+}
+
+<form asp-action="SaveAdd" asp-controller="Performance">
+
+    <partial name="FormPerformancePartial" />
+</form>
+
+
+@section  Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+

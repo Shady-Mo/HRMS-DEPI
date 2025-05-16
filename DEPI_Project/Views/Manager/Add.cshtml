@@ -1,0 +1,146 @@
+﻿@model DEPI_Project.Models.CorpMgmt_System.Employee
+@{
+    ViewData["Title"] = "Add Manager";
+    Layout = "_testLayout";
+}
+<link href="/css/prostyle.css" rel="stylesheet" />
+
+<div class="container my-4">
+
+
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form asp-action="SaveAdd" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="FirstName" class="fw-semibold mb-1">First Name</label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="LastName" class="fw-semibold mb-1">Last Name</label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Position" class="fw-semibold mb-1">Role (Position)</label>
+                            <select asp-for="Position" class="form-select">
+                                <option value="Project Manager">Project Manager</option>
+                                <option value="Team Leader">Team Leader</option>
+                            </select>
+                            <span asp-validation-for="Position" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="PhoneNumber" class="fw-semibold mb-1">Mobile</label>
+                            <input asp-for="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="DeptId" class="fw-semibold mb-1">Department</label>
+                            <select asp-for="DeptId" class="form-select" asp-items="@(ViewData["DeptList"] as List<SelectListItem>)">
+                                <option value="">-- Select Department --</option>
+                            </select>
+                            <span asp-validation-for="DeptId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    @* <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label class="fw-semibold mb-1">Project</label>
+                            <input name="Projects[0].Name" class="form-control" />
+                        </div>
+                    </div> *@
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Email" class="fw-semibold mb-1">Email</label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Gender" class="form-label"></label>
+                    <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-select">
+                        <option value="">-- Select Gender --</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="DateOfBirth" class="fw-semibold mb-1">Date of Birth</label>
+                    <input asp-for="DateOfBirth" type="date" class="form-control" />
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Address" class="fw-semibold mb-1">Address</label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Nationality" class="fw-semibold mb-1">Nationality</label>
+                    <input asp-for="Nationality" class="form-control" />
+                    <span asp-validation-for="Nationality" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 col">
+                    <label asp-for="Skills" class="form-label"></label>
+                    <textarea asp-for="Skills" class="form-control"></textarea>
+                    <span asp-validation-for="Skills" class="text-danger"></span>
+                </div>
+
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">
+                        <i class="fas fa-arrow-left me-2"></i>Back
+                    </a>
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="fas fa-save me-2"></i>Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    .page-title {
+        font-size: 28px;
+        font-weight: bold;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+        .page-title i {
+            margin-right: 10px;
+            color: #007bff;
+        }
+</style>

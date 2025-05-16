@@ -1,0 +1,57 @@
+   /* body{
+    background-color:#ECF0F4;
+  }  */
+  .badge-gender, .badge-status {
+        padding: 5px 12px;
+        border-radius: 15px;
+        display: inline-block;
+    }
+ .badge-gender.male, .badge-status.active {
+            color: #198754;
+            background-color: rgba(25, 135, 84, 0.15);
+        }
+
+.badge-gender.female {
+            color: #6F42C1;
+            background-color: rgba(111, 66, 193, 0.15);
+        }
+
+ .badge-status.inactive {
+            color: #FD7E14;
+            background-color: rgba(253, 126, 20, 0.15);
+        }
+
+     .badge-status.onleave {
+            color: #F44336;
+            background-color: rgba(244, 67, 54, 0.15);
+        }
+        
+        /* .btntable{
+            border:none;
+            background: none;
+            padding: 0;
+            cursor: pointer;
+            
+        }
+        .circle-btn {
+            width: 30px; 
+            height: 30px; 
+            border-radius: 50%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 0; 
+            font-size: 20px; 
+            text-align: center; 
+        }
+        
+        .btn-primary.circle-btn {
+            background-color: #007bff; 
+            border: none;
+        }
+        
+        .btn-success.circle-btn {
+            background-color: #28a745; 
+            border: none;
+        }
+         */

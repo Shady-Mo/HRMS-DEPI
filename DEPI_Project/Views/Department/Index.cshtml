@@ -1,0 +1,76 @@
+﻿@model IEnumerable<DEPI_Project.Models.CorpMgmt_System.Department>
+
+@{
+    ViewData["Title"] = "All Departments";
+    Layout = "_testLayout";
+}
+
+<h1>All Departments</h1>
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <form asp-action="Index" method="get">
+            <div class="input-group">
+                <input type="text" name="searchString" class="form-control" placeholder="Search by name or head..." value="@ViewData["CurrentFilter"]" />
+                <button type="submit" class="btn btn-outline-secondary"><i class="bi bi-search"></i> Search</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6 text-end">
+        <a asp-action="Add" class="btn btn-primary"><i class="bi bi-plus"></i> Add Department</a>
+        <a asp-action="Export" class="btn btn-success"><i class="bi bi-download"></i> Export</a>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Department Name</th>
+            <th scope="col">Head of Department</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Employee Capacity</th>
+            <th scope="col">Established Year</th>
+            <th scope="col">Total Employees</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Manager?.UserName</td>
+                <td>@item.Manager?.PhoneNumber</td>
+                <td>@item.EmployeeCapacity</td>
+                <td>@item.EstablishedYear</td>
+                <td>@item.CurrentEmployeeCount</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.DepartmentId" class="btn btn-outline-success"><i class="bi bi-pencil"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.DepartmentId" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-between">
+    <div>
+        Items per page:
+        <select>
+            <option>10</option>
+            <option>25</option>
+            <option>50</option>
+        </select>
+    </div>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+}

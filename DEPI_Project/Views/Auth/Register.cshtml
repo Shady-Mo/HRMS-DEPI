@@ -1,0 +1,162 @@
+﻿@* @model DEPI_Project.DTOs.EmployeeDTO *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Register New Employee"; *@
+@* } *@
+
+@* <h2 class="mb-4">Register New Employee</h2> *@
+
+@* <form asp-action="RegistNewEmployee" method="post" class="needs-validation" novalidate> *@
+
+@*     <div class="row"> *@
+@*         <div class="col-md-6 mb-3"> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="FName"></label> *@
+@*                 <input asp-for="FName" class="form-control" /> *@
+@*                 <span asp-validation-for="FName" class="text-danger"></span> *@
+@*             </div> *@
+@*         </div> *@
+
+@*         <div class="col-md-6 mb-3"> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="LName"></label> *@
+@*                 <input asp-for="LName" class="form-control" /> *@
+@*                 <span asp-validation-for="LName" class="text-danger"></span> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+
+@*     <div class="row"> *@
+@*         <div class="col-md-6 mb-3"> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="UserName"></label> *@
+@*                 <input asp-for="UserName" class="form-control" /> *@
+@*                 <span asp-validation-for="UserName" class="text-danger"></span> *@
+@*             </div> *@
+@*         </div> *@
+
+@*         <div class="col-md-6 mb-3"> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Email"></label> *@
+@*                 <input asp-for="Email" class="form-control" /> *@
+@*                 <span asp-validation-for="Email" class="text-danger"></span> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+
+@*     <div class="row"> *@
+@*         <div class="col-md-6 mb-3"> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Password"></label> *@
+@*                 <input asp-for="Password" type="password" class="form-control" /> *@
+@*                 <span asp-validation-for="Password" class="text-danger"></span> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+   
+@*     <div class="row"> *@
+@*         <div class="col-md-6 mb-3"> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Gender"></label> *@
+@*                 <select asp-for="Gender" class="form-control" asp-items="Html.GetEnumSelectList<Gender>()"> *@
+@*                     <option value="">-- Select Gender --</option> *@
+@*                 </select> *@
+@*                 <span asp-validation-for="Gender" class="text-danger"></span> *@
+@*             </div> *@
+@*         </div> *@
+
+@*         <div class="col-md-6 mb-3"> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="DateOfBirth"></label> *@
+@*                 <input asp-for="DateOfBirth" type="date" class="form-control" /> *@
+@*                 <span asp-validation-for="DateOfBirth" class="text-danger"></span> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+
+@*     <div class="row"> *@
+@*         <div class="col-md-6 mb-3"> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="PhoneNumber"></label> *@
+@*                 <input asp-for="PhoneNumber" class="form-control" /> *@
+@*                 <span asp-validation-for="PhoneNumber" class="text-danger"></span> *@
+@*             </div> *@
+@*         </div> *@
+
+@*         <div class="col-md-6 mb-3"> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Nationality"></label> *@
+@*                 <input asp-for="Nationality" class="form-control" /> *@
+@*                 <span asp-validation-for="Nationality" class="text-danger"></span> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+
+@*     <div class="row"> *@
+@*         <div class="col-md-6 mb-3"> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Salary"></label> *@
+@*                 <input asp-for="Salary" class="form-control" /> *@
+@*                 <span asp-validation-for="Salary" class="text-danger"></span> *@
+@*             </div> *@
+@*         </div> *@
+
+@*         <div class="col-md-6 mb-3"> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Position"></label> *@
+@*                 <input asp-for="Position" class="form-control" /> *@
+@*                 <span asp-validation-for="Position" class="text-danger"></span> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+
+@*     <div class="row"> *@
+@*         <div class="col-md-6 mb-3"> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="ContractType"></label> *@
+@*                 <select asp-for="ContractType" class="form-control" asp-items="Html.GetEnumSelectList<ContractType>()"> *@
+@*                     <option value="">-- Select Contract Type --</option> *@
+@*                 </select> *@
+@*                 <span asp-validation-for="ContractType" class="text-danger"></span> *@
+@*             </div> *@
+@*         </div> *@
+
+@*         <div class="col-md-6 mb-3"> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="HireDate"></label> *@
+@*                 <input asp-for="HireDate" type="date" class="form-control" /> *@
+@*                 <span asp-validation-for="HireDate" class="text-danger"></span> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+
+
+@*     <div class="row"> *@
+@*         <div class="col-md-6 mb-3"> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="MaritalStatus"></label> *@
+@*                 <select asp-for="MaritalStatus" class="form-control" asp-items="Html.GetEnumSelectList<MaritalStatus>()"> *@
+@*                     <option value="">-- Select Marital Status --</option> *@
+@*                 </select> *@
+@*                 <span asp-validation-for="MaritalStatus" class="text-danger"></span> *@
+@*             </div> *@
+@*         </div> *@
+
+@*         <div class="col-md-6 mb-3"> *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="Skills"></label> *@
+@*                 <textarea asp-for="Skills" class="form-control"></textarea> *@
+@*                 <span asp-validation-for="Skills" class="text-danger"></span> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+
+@*     <button type="submit" class="btn btn-primary">Register</button> *@
+
+@* </form> *@
+@* <a asp-action="Login" asp-controller="Auth" class="btn btn-dark mt-4">Back</a> *@
+@* @section Scripts { *@
+@*     @{ *@
+@*         await Html.RenderPartialAsync("_ValidationScriptsPartial"); *@
+@*     } *@
+@* } *@

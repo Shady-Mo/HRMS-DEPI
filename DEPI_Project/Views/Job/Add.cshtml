@@ -1,0 +1,15 @@
+﻿@model Job
+@{
+    ViewData["Title"] = "Add Job";
+    Layout = "_testLayout";
+}
+
+<form asp-action="SaveAdd" asp-controller="Job">
+
+    <partial name="FormJobPartial" />
+
+</form>
+@section  Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

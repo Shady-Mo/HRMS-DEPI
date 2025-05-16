@@ -1,0 +1,15 @@
+﻿@model TaskViewModel
+@{
+    ViewData["Title"] = "Add Employee";
+    Layout = "_EmpLayout";
+}
+
+<form asp-action="SaveAdd" asp-controller="Task">
+
+    <partial name="FormTaskPartial" />
+</form>
+
+
+@section  Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

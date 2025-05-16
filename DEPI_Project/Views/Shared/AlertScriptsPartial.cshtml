@@ -1,0 +1,54 @@
+﻿<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+@if (TempData["Success"] != null)
+{
+    <text>
+        Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: '@TempData["Success"]'
+        });
+    </text>
+}
+
+@if (TempData["EditSuccess"] != null)
+{
+    <text>
+        Swal.fire({
+        icon: 'success',
+        title: 'Updated',
+        text: '@TempData["EditSuccess"]'
+        });
+    </text>
+}
+    function confirmDelete(event) {
+            event.preventDefault(); 
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "This action cannot be undone.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    event.target.submit(); 
+                }
+            });
+
+            return false; 
+        }
+
+@if (TempData["DeleteSuccess"] != null)
+{
+    <text>
+        Swal.fire({
+        icon: 'success',
+        title: 'Deleted',
+        text: '@TempData["DeleteSuccess"]'
+        });
+    </text>
+}
+</script>

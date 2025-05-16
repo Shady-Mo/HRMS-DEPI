@@ -1,0 +1,141 @@
+﻿@model List<ProjectTask>
+@{
+    ViewData["Title"] = "Tasks";
+    Layout = "_EmpLayout";
+}
+<link href="/css/prostyle.css" rel="stylesheet" />
+
+<div class="container my-4">
+    <div class="page-title d-flex align-items-center">
+        <i class="fas fa-tasks fa-lg"></i>
+        <span>Tasks</span>
+    </div>
+    <!-- Toolbar فوق الجدول -->
+    <div class="d-flex justify-content-between align-items-center px-3 py-2" style="background-color: #e9f0fc; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+        <div class="d-flex align-items-center gap-2">
+            <i class="fas fa-search text-secondary"></i>
+            <input type="text" id="searchInput" class="form-control" placeholder="Search" style="width: 250px;">
+        </div>
+
+        <div class="d-flex align-items-center gap-3">
+            <a asp-action="ExportToExcel" class="btn btn-primary circle-btn" title="Download Excel">
+                <i class="fas fa-download"></i>
+            </a>
+
+            <a asp-action="Add" asp-controller="Task" class="btn btn-success circle-btn" title="Add New">
+                <i class="fas fa-plus"></i>
+            </a>
+            <!-- زر الحذف المخفي -->
+            <button id="deleteSelectedBtn" type="submit" class="btn p-0 d-none btntable">
+                <img src="/image/delete.png" alt="Delete" />
+            </button>
+        </div>
+    </div>
+    <div class="table-responsive" style="overflow-x: auto;">
+        <table class="table table-hover align-middle text-center" style="min-width: 1600px;">
+            <thead class="table-light">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Created Date</th>
+                    <th>Start Date</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Estimated Hours</th>
+                    <th>Actual Hours</th>
+                    <th>Completed Date</th>
+                    <th>Employee</th>
+                    <th>Project</th>
+                    <th>Manager</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var task in Model)
+                {
+                    <tr>
+                        <td>@task.Title</td>
+                        <td>@task.Description</td>
+                        <td>@task.CreatedDate.ToString("MM/dd/yyyy")</td>
+                        <td>@task.StartDate.ToString("MM/dd/yyyy")</td>
+                        <td>@task.DueDate.ToString("MM/dd/yyyy")</td>
+                        <td><span class="badge-status @task.Status.ToString().ToLower()">@task.Status</span></td>
+                        <td>@task.Priority</td>
+                        <td>@task.EstimatedHours</td>
+                        <td>@task.ActualHours</td>
+                        <td>@task.CompletedDate.ToString("MM/dd/yyyy")</td>
+                        <td>@task.Employee.UserName</td>
+                        <td>@task.Project.Name</td>
+                        <td>@task.Manager.UserName</td>
+                        <td>
+                            <div class="d-flex justify-content-center">
+                                <a asp-action="Edit" asp-route-id="@task.TaskId" class="btn btn-sm btn-primary me-2">Edit</a>
+                                <form asp-action="Delete" asp-route-id="@task.TaskId" method="post" onsubmit="return confirm('Are you sure?')">
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+
+    <script src="/js/empscript.js"></script>
+    <partial name="AlertScriptsPartial" />
+    <partial name="_ValidationScriptsPartial" />
+}
+<style>
+
+    .page-title {
+        font-size: 28px;
+        font-weight: bold;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+        .page-title i {
+            margin-right: 10px;
+            color: #007bff;
+        }
+
+    .btntable {
+        border: none;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .circle-btn {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .btn-primary.circle-btn {
+        background-color: #007bff;
+        border: none;
+    }
+
+    .btn-success.circle-btn {
+        background-color: #28a745;
+        border: none;
+    }
+
+    table tbody tr:hover {
+        background-color: #f1f1f1;
+        cursor: pointer;
+    }
+</style>

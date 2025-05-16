@@ -1,0 +1,76 @@
+﻿@model Candidate
+<link href="/css/Formpartial.css" rel="stylesheet" />
+<div class="form-wrapper">
+    <div class="card shadow-lg p-4">
+        <form asp-action="Add" method="post">
+
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Mobile" class="form-label"></label>
+                    <input asp-for="Mobile" class="form-control" />
+                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 col-md-6">
+                    <label class="form-label">Job</label>
+                    <select id="jobSelect" name="JobId" class="form-select">
+                        <option value="">-- Select Job --</option>
+                        @foreach (var job in ViewBag.JobList as List<SelectListItem>)
+                        {
+                            <option value="@job.Value">@job.Text</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label class="form-label">Job Type</label>
+                    <input type="text" id="jobType" class="form-control" readonly />
+                </div>
+
+                <div class="mb-3 col-md-6">
+                    <label class="form-label">Role</label>
+                    <input type="text" id="jobRole" class="form-control" readonly />
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label class="form-label">Admin</label>
+                    <input id="appUserName" type="text" class="form-control" readonly />
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label class="form-label" hidden>Admin</label>
+                    <input id="appUserId" asp-for="AppUserId" class="form-control" hidden />
+                </div>
+
+               
+            </div>
+
+            <!-- Submit and Back Buttons -->
+            <div class="row mt-4">
+                <div class="col-md-6 text-end">
+                    <button type="submit" class="btn btn-primary w-75">Submit</button>
+                </div>
+                <div class="col-md-6 text-start">
+                    <a asp-action="Index" asp-controller="Candidate" class="btn btn-secondary w-75">Back</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,122 @@
+﻿@model DEPI_Project.Models.CorpMgmt_System.Employee
+@{
+    ViewData["Title"] = "Edit Manager";
+    Layout = "_testLayout";
+}
+<link href="/css/prostyle.css" rel="stylesheet" />
+
+<div class="container my-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form asp-action="SaveEdit" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="Id" />
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <!-- Name Section -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="FirstName" class="fw-semibold mb-1">First Name</label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="LastName" class="fw-semibold mb-1">Last Name</label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Required Fields -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Skills" class="fw-semibold mb-1">Skills *</label>
+                            <input asp-for="Skills" class="form-control"
+                                   placeholder="Enter comma-separated skills (e.g., C#,ASP.NET,SQL)"
+                                   value="@(Model.Skills != null ? string.Join(",", Model.Skills) : "")" />
+                            <span asp-validation-for="Skills" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Address" class="fw-semibold mb-1">Address *</label>
+                            <input asp-for="Address" class="form-control" required />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Nationality" class="fw-semibold mb-1">Nationality *</label>
+                            <input asp-for="Nationality" class="form-control" required />
+                            <span asp-validation-for="Nationality" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Position & Mobile -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Position" class="fw-semibold mb-1">Role (Position)</label>
+                            <select asp-for="Position" class="form-select">
+                                <option value="">-- Select Role --</option>
+                                <option value="Project Manager">Project Manager</option>
+                                <option value="Team Leader">Team Leader</option>
+                            </select>
+                            <span asp-validation-for="Position" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="PhoneNumber" class="fw-semibold mb-1">Mobile</label>
+                            <input asp-for="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Department & Email -->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="DeptId" class="fw-semibold mb-1">Department</label>
+                            <select asp-for="DeptId" class="form-select" asp-items="@(ViewData["DeptList"] as List<SelectListItem>)">
+                                <option value="">-- Select Department --</option>
+                            </select>
+                            <span asp-validation-for="DeptId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Email" class="fw-semibold mb-1">Email</label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="d-flex justify-content-between mt-4">
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">
+                        <i class="fas fa-arrow-left me-2"></i>Back
+                    </a>
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="fas fa-save me-2"></i>Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

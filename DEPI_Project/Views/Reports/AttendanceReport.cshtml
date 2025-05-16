@@ -1,0 +1,219 @@
+﻿@model List<DEPI_Project.Models.CorpMgmt_System.Attendance>
+@{
+    ViewData["Title"] = "Attendance Report";
+    Layout = "_testLayout";
+}
+<link href="/css/prostyle.css" rel="stylesheet" />
+
+<div class="container my-4">
+    <!-- Page Title -->
+    <div class="page-title d-flex align-items-center">
+        <i class="fas fa-clock fa-lg"></i>
+        <span>Attendance Report</span>
+    </div>
+
+    <!-- Search Filters -->
+    <div class="mb-3">
+        <div class="d-flex align-items-center ps-3 py-2" style="background-color: #e9f0fc; color: #0d6efd; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+            <i class="fas fa-filter me-2"></i>
+            <span>Search Filters</span>
+        </div>
+        <div class="p-3" style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
+            <form asp-action="AttendanceReport" method="get">
+                <div class="row g-3">
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <input type="text" name="searchName" class="form-control" placeholder="Employee Name" value="@Context.Request.Query["searchName"]">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                            <input type="date" name="date" class="form-control" value="@Context.Request.Query["date"]">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary flex-grow-1">
+                                <i class="fas fa-filter me-2"></i>Apply
+                            </button>
+                            <a asp-action="AttendanceReport" class="btn btn-outline-secondary flex-grow-1">
+                                <i class="fas fa-undo me-2"></i>Reset
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="d-flex justify-content-between align-items-center px-3 py-2" style="background-color: #e9f0fc; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+        <div>
+            <span class="text-primary fw-bold">Total Records: <span id="totalRecords">@Model.Count()</span></span>
+        </div>
+
+        <div class="d-flex align-items-center gap-3">
+            <a asp-action="ExportAttendanceToExcel"
+               asp-route-searchName="@Context.Request.Query["searchName"]"
+               asp-route-date="@Context.Request.Query["date"]"
+               class="btn btn-primary circle-btn" title="Download Excel">
+                <i class="fas fa-download"></i>
+            </a>
+
+            <!-- Add New button can be added here if needed -->
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive" style="overflow-x: auto;">
+        <table class="table table-hover align-middle text-center">
+            <thead class="table-light">
+                <tr>
+                    <th style="min-width: 60px;">#</th>
+                    <th style="min-width: 150px;">Employee Name</th>
+                    <th style="min-width: 150px;">Date</th>
+                    <th style="min-width: 150px;">Time In</th>
+                    <th style="min-width: 150px;">Time Out</th>
+                    <th style="min-width: 150px;">Status</th>
+                    <th style="min-width: 150px;">Total Hours</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    int counter = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@counter</td>
+                            <td>@item.Employee?.UserName</td>
+                            <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                            <td>@item.TimeIn.ToString(@"hh\:mm")</td>
+                            <td>@item.TimeOut.ToString(@"hh\:mm")</td>
+                            <td>
+                                @{
+                                    string statusClass = item.Status.ToString() switch
+                                    {
+                                        "Present" => "active",
+                                        "Absent" => "inactive",
+                                        "Late" => "pending",
+                                        "HalfDay" => "halfday",
+                                        _ => "inactive"
+                                    };
+                                }
+                                <span class="badge-status @statusClass">@item.Status</span>
+                            </td>
+                            <td>@item.TotalHours().ToString(@"hh\:mm")</td>
+                        </tr>
+                        counter++;
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" class="text-center py-4">No attendance records available</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-end">
+            <!-- Pagination will be dynamically generated by JavaScript -->
+        </ul>
+    </nav>
+</div>
+
+@* @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // JavaScript for pagination and filtering functionality can be added here
+        $(document).ready(function () {
+            // Functionality similar to attendance script
+        });
+    </script>
+}
+ *@
+<style>
+    .page-title {
+        font-size: 28px;
+        font-weight: bold;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+        .page-title i {
+            margin-right: 10px;
+            color: #007bff;
+        }
+
+    .btntable {
+        border: none;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .circle-btn {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .btn-primary.circle-btn {
+        background-color: #007bff;
+        border: none;
+    }
+
+    .btn-success.circle-btn {
+        background-color: #28a745;
+        border: none;
+    }
+
+    table tbody tr:hover {
+        background-color: #f1f1f1;
+        cursor: pointer;
+    }
+
+    .badge-status {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        display: inline-block;
+        min-width: 80px;
+    }
+
+        .badge-status.active {
+            background-color: #dff5e7;
+            color: #28a745;
+        }
+
+        .badge-status.inactive {
+            background-color: #fdeeee;
+            color: #dc3545;
+        }
+
+        .badge-status.pending {
+            background-color: #fff3cd;
+            color: #ffc107;
+        }
+
+        .badge-status.halfday {
+            background-color: #e0f3ff;
+            color: #0dcaf0;
+        }
+</style>

@@ -1,0 +1,52 @@
+﻿@model Candidate
+@{
+    ViewData["Title"] = "Add Candidate";
+    Layout = "_testLayout";
+}
+
+<form asp-action="SaveAdd" asp-controller="Candidate">
+    <partial name="FormCandidatePartial" />
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#jobSelect').on('change', function () {
+                var jobId = $(this).val();
+
+                if (jobId) {
+                    $.ajax({
+                        url: '/Candidate/GetJobDetails?jobId=' + jobId,
+                        type: 'GET',
+                        success: function (data) {
+                            if (data) {
+                                $('#jobType').val(data.jobType);
+                                $('#jobRole').val(data.role);
+                                $('#appUserId').val(data.appUserId);
+                                 $('#appUserName').val(data.appUserName);
+                            } else {
+                                clearJobFields();
+                            }
+                        },
+                        error: function () {
+                            clearJobFields();
+                        }
+                    });
+                } else {
+                    clearJobFields();
+                }
+            });
+
+            function clearJobFields() {
+                $('#jobType').val('');
+                $('#jobRole').val('');
+                $('#appUserId').val('');
+				$('#appUserName').val('');
+            }
+        });
+    </script>
+
+}

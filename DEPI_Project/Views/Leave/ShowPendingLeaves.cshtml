@@ -1,0 +1,51 @@
+﻿@model List<DEPI_Project.Models.CorpMgmt_System.Leave>
+
+<h2>Pending Leave Requests</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Reason</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var leave in Model)
+        {
+            <tr>
+                <td>@leave.Employee?.FirstName</td>
+                <td>@leave.StartDate.ToShortDateString()</td>
+                <td>@leave.EndDate.ToShortDateString()</td>
+                <td>@leave.Reason</td>
+                <td>@leave.Type</td>
+                <td>
+                    <form asp-action="Approve" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@leave.LeaveId" />
+                        <button type="submit" class="btn btn-success">Approve</button>
+                    </form>
+
+                    <form asp-action="Reject" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@leave.LeaveId" />
+                        <button type="submit" class="btn btn-danger">Reject</button>
+                    </form>
+
+                    <form asp-action="Delete" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@leave.LeaveId" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<a asp-action="ShowPendingLeaves" asp-controller="Leave" class="btn btn-primary">Pending Leaves</a>
+<a asp-action="Index" asp-controller="Leave" class="btn btn-secondary">All Leaves</a>
+

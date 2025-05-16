@@ -1,0 +1,138 @@
+﻿@model List<Attendance>
+@{
+    ViewData["Title"] = "Attendance";
+    Layout = "_EmpLayout";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+<link href="/css/EmpDash/EmpTable.css" rel="stylesheet" />
+
+<div class="container-fluid py-4">
+    @* <h2 class="text-center mb-4 page-header">Attendance</h2> *@
+
+    <div class="attendance-controls-card text-center">
+        @if (ViewBag.HasCheckedIn == false)
+        {
+            <form id="checkInForm" asp-action="CheckIn" method="post" style="display:inline;">
+                <button type="button" class="btn btn-success shadow-sm" onclick="confirmCheckIn()">
+                    <i class="fas fa-fingerprint me-2"></i>Check In
+                </button>
+            </form>
+        }
+        else if (ViewBag.HasCheckedOut == false)
+        {
+            <form id="checkOutForm" asp-action="CheckOut" method="post" style="display:inline;">
+                <button type="button" class="btn btn-danger shadow-sm" onclick="confirmCheckOut()">
+                    <i class="fas fa-sign-out-alt me-2"></i>Check Out
+                </button>
+            </form>
+        }
+        else
+        {
+            <div class="alert alert-success d-inline-block">
+                <i class="fas fa-check-circle me-2"></i>You've completed today's attendance.
+            </div>
+        }
+    </div>
+
+    <div class="attendance-table-card">
+        <table class="table table-striped custom-attendance-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                            <td>@(item.TimeIn != TimeSpan.Zero ? item.TimeIn.ToString(@"hh\:mm") : "—")</td>
+                            <td>@(item.TimeOut != TimeSpan.Zero ? item.TimeOut.ToString(@"hh\:mm") : "—")</td>
+                            <td>
+                                @switch (item.Status)
+                                {
+                                    case Status.Present:
+                                        <span class="badge bg-success">Present</span>
+                                        break;
+                                    case Status.Absent:
+                                        <span class="badge bg-danger">Absent</span>
+                                        break;
+                                    default:
+                                        <span class="badge bg-secondary">@item.Status</span>
+                                        break;
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center py-4">
+                            <i class="fas fa-info-circle me-2"></i>No attendance records found.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+       
+        @if (TempData["Message"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Notice',
+                        text: '@TempData["Message"]',
+                        confirmButtonColor: '#3085d6'
+                    });
+            </text>
+        }
+
+       
+        function confirmCheckIn() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You are about to check in.",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#198754',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Yes, Check In'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('checkInForm').submit();
+                }
+            });
+        }
+
+      
+        function confirmCheckOut() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You are about to check out.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc3545',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Yes, Check Out'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('checkOutForm').submit();
+                }
+            });
+        }
+    </script>
+
+}

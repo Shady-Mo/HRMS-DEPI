@@ -1,0 +1,106 @@
+﻿@model DEPI_Project.Models.CorpMgmt_System.Attendance
+@{
+    ViewData["Title"] = "Edit Attendance";
+    Layout = "_testLayout";
+}
+<link href="/css/prostyle.css" rel="stylesheet" />
+
+<div class="container my-4">
+    <!-- Page Title -->
+    <div class="page-title d-flex align-items-center">
+        <i class="fas fa-edit fa-lg"></i>
+        <span>Edit Attendance</span>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form asp-action="SaveEdit" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="AttendanceId" />
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="EmpId" class="fw-semibold mb-1">Employee</label>
+                            <select asp-for="EmpId" class="form-select" asp-items="ViewBag.EmpList">
+                            </select>
+                            <span asp-validation-for="EmpId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="AppUserId" class="fw-semibold mb-1">Admin</label>
+                            <select asp-for="AppUserId" class="form-select" asp-items="ViewBag.UsersList">
+                            </select>
+                            <span asp-validation-for="AppUserId" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <div class="form-group mb-3">
+                            <label asp-for="Date" class="fw-semibold mb-1">Date</label>
+                            <input asp-for="Date" class="form-control" type="date" />
+                            <span asp-validation-for="Date" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group mb-3">
+                            <label asp-for="TimeIn" class="fw-semibold mb-1">Time In</label>
+                            <input asp-for="TimeIn" class="form-control" type="time" />
+                            <span asp-validation-for="TimeIn" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group mb-3">
+                            <label asp-for="TimeOut" class="fw-semibold mb-1">Time Out</label>
+                            <input asp-for="TimeOut" class="form-control" type="time" />
+                            <span asp-validation-for="TimeOut" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Status" class="fw-semibold mb-1">Status</label>
+                            <select asp-for="Status" class="form-select" asp-items="Html.GetEnumSelectList<DEPI_Project.Models.CorpMgmt_System.Status>()">
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4">
+                        <i class="fas fa-arrow-left me-2"></i>Back
+                    </a>
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="fas fa-save me-2"></i>Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    .page-title {
+        font-size: 28px;
+        font-weight: bold;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+        .page-title i {
+            margin-right: 10px;
+            color: #007bff;
+        }
+</style>

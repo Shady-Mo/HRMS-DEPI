@@ -1,0 +1,165 @@
+﻿@model DEPI_Project.Models.CorpMgmt_System.ShiftSchedule
+@{
+    ViewData["Title"] = "Delete Shift Schedule";
+    Layout = "_testLayout";
+}
+<link href="/css/prostyle.css" rel="stylesheet" />
+
+<div class="container my-4">
+    <!-- Page Title -->
+    <div class="page-title d-flex align-items-center">
+        <i class="fas fa-trash fa-lg text-danger"></i>
+        <span>Delete Shift Schedule</span>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                Are you sure you want to delete this shift schedule?
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Employee Name</label>
+                        <div class="form-control-plaintext">@Model.Employee?.FirstName @Model.Employee?.LastName</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Manager Name</label>
+                        <div class="form-control-plaintext">@Model.Manager?.FirstName @Model.Manager?.LastName</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Shift Date</label>
+                        <div class="form-control-plaintext">@Model.ShiftDate.ToString("MM/dd/yyyy")</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Shift Type</label>
+                        <div class="form-control-plaintext">
+                            @{
+                                string badgeClass = Model.ShiftType switch
+                                {
+                                    ShiftType.Day => "bg-info",
+                                    ShiftType.Night => "bg-dark",
+                                    _ => "bg-secondary"
+                                };
+                            }
+                            <span class="badge @badgeClass">@Model.ShiftType?.ToString()</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Start Time</label>
+                        <div class="form-control-plaintext">@Model.StartTime.ToString("hh:mm tt")</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">End Time</label>
+                        <div class="form-control-plaintext">@Model.EndTime.ToString("hh:mm tt")</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Total Hours</label>
+                        <div class="form-control-plaintext">@Model.TotalHours().ToString("F2") hours</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Status</label>
+                        <div class="form-control-plaintext">
+                            @{
+                                string statusClass = Model.Status switch
+                                {
+                                    ShiftStatus.Scheduled => "active",
+                                    ShiftStatus.Completed => "active",
+                                    ShiftStatus.Canceled => "inactive",
+                                    ShiftStatus.Pending => "pending",
+                                    _ => ""
+                                };
+                            }
+                            <span class="badge-status @statusClass">@Model.Status?.ToString()</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Description</label>
+                        <div class="form-control-plaintext">@Model.Description</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-outline-secondary px-4">
+                    <i class="fas fa-arrow-left me-2"></i>Back
+                </a>
+                <form asp-action="SaveDelete" method="post">
+                    <input type="hidden" name="id" value="@Model.ScheduleId" />
+                    <button type="submit" class="btn btn-danger px-4">
+                        <i class="fas fa-trash me-2"></i>Confirm Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .page-title {
+        font-size: 28px;
+        font-weight: bold;
+        border-bottom: 2px solid #dc3545;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+        .page-title i {
+            margin-right: 10px;
+        }
+
+    .badge-status {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        display: inline-block;
+        min-width: 80px;
+    }
+
+        .badge-status.active {
+            background-color: #dff5e7;
+            color: #28a745;
+        }
+
+        .badge-status.inactive {
+            background-color: #fdeeee;
+            color: #dc3545;
+        }
+
+        .badge-status.pending {
+            background-color: #fff3cd;
+            color: #ffc107;
+        }
+</style>

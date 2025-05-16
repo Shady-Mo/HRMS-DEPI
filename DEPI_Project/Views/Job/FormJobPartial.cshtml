@@ -1,0 +1,82 @@
+﻿@model Job
+<link href="/css/Formpartial.css" rel="stylesheet" />
+<div class="form-wrapper">
+    <div class="card shadow-lg p-4">
+        <form asp-action="Add" method="post">
+
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Name" class="form-label">Job Title</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Role" class="form-label"></label>
+                    <input asp-for="Role" class="form-control" />
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Vacancies" class="form-label"></label>
+                    <input asp-for="Vacancies" class="form-control" />
+                    <span asp-validation-for="Vacancies" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 col-md-6">
+                    <label asp-for="ExpireDate" class="form-label"></label>
+                    <input asp-for="ExpireDate" class="form-control" />
+                    <span asp-validation-for="ExpireDate" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label asp-for="DepartmentId" class="form-label">Department Name</label>
+                    <select asp-for="DepartmentId" asp-items="ViewBag.DeptList" class="form-select">
+                        <option value="0">-- Select Department --</option>
+                    </select>
+                    <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 col-md-6">
+                    <label asp-for="AppUserId" class="form-label">Admin Name</label>
+                    <select asp-for="AppUserId" asp-items="ViewBag.UserList" class="form-select">
+                        <option value="0">-- Select User --</option>
+                    </select>
+                    <span asp-validation-for="AppUserId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Status" class="form-label"></label>
+                    <select asp-for="Status" asp-items="Html.GetEnumSelectList<JobStatus>()" class="form-select">
+                        <option value="">-- Select Status --</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 col-md-6">
+                    <label asp-for="JobType" class="form-label"></label>
+                    <select asp-for="JobType" asp-items="Html.GetEnumSelectList<JobType>()" class="form-select">
+                        <option value="">-- JobType --</option>
+                    </select>
+                    <span asp-validation-for="JobType" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Submit and Back Buttons -->
+            <div class="row mt-4">
+                <div class="col-md-6 text-end">
+                    <button type="submit" class="btn btn-primary w-75">Submit</button>
+                </div>
+                <div class="col-md-6 text-start">
+                    <a asp-action="Index" asp-controller="Job" class="btn btn-secondary w-75">Back</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿@* @model DEPI_Project.Models.View_Model.ProjectViewModel *@
+@model ProjectViewModel
+@{
+    ViewData["Title"] = "Add Project";
+    Layout = "_testLayout";
+}
+
+<link href="/css/prostyle.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+<div class="container my-4">
+    <!-- Page Title -->
+    <div class="page-title d-flex align-items-center">
+        <i class="fas fa-plus-circle fa-lg"></i>
+        <span>Add Project</span>
+    </div>
+    <div class="card shadow-sm">
+        <div class="card-body">
+           <form asp-action="SaveAdd" asp-controller="Project">
+           <partial name="FormProPartial" />
+          </form>
+
+        </div>
+    </div>
+    
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#addProjectForm").validate({
+                errorClass: "text-danger",
+                highlight: function (element) {
+                    $(element).addClass("is-invalid");
+                },
+                unhighlight: function (element) {
+                    $(element).removeClass("is-invalid");
+                },
+                submitHandler: function (form) {
+                    console.log("Form is valid, submitting...");
+                    form.submit();
+                }
+            });
+
+            const startDateInput = document.getElementById('Project_StartDate');
+            const dueDateInput = document.getElementById('Project_DueDate');
+
+            if (startDateInput && dueDateInput) {
+                startDateInput.addEventListener('change', function () {
+                    if (this.value) {
+                        dueDateInput.min = this.value;
+                        if (dueDateInput.value && dueDateInput.value < this.value) {
+                            dueDateInput.value = this.value;
+                        }
+                    }
+                });
+            } else {
+                console.error("Date inputs not found");
+            }
+
+            $("#saveButton").on("click", function () {
+                console.log("Save button clicked");
+                if ($("#addProjectForm").valid()) {
+                    console.log("Form is valid, attempting to submit");
+                } else {
+                    console.log("Form is invalid");
+                }
+            });
+        });
+    </script>
+}

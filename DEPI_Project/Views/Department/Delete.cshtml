@@ -1,0 +1,28 @@
+﻿@model DEPI_Project.Models.CorpMgmt_System.Department
+
+@{
+    ViewData["Title"] = "Delete Department";
+    Layout = "_testLayout";
+}
+
+<div class="card text-center">
+    <h2 style="color:red">
+        Are you sure you want to delete this Department?
+    </h2>
+    <div>
+        <h3>Department Name: @Model.Name</h3>
+        <h3>Head of Department: @Model.Manager?.FirstName</h3>
+        <h3>Phone: @Model.Manager?.PhoneNumber</h3>
+        <h3>Employee Capacity: @Model.EmployeeCapacity</h3>
+        <h3>Established Year: @Model.EstablishedYear</h3>
+        <h3>Total Employees: @Model.CurrentEmployeeCount</h3>
+    </div>
+
+    <div>
+        <form asp-action="SaveDelete" class="form-control">
+            <input type="hidden" name="id" value="@Model.DepartmentId" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </form>
+    </div>
+</div>

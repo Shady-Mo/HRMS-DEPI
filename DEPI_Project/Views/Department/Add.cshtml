@@ -1,0 +1,128 @@
+﻿@model DEPI_Project.Models.CorpMgmt_System.Department
+
+@{
+    ViewData["Title"] = "Add Department";
+    Layout = "_testLayout";
+}
+
+<div class="form-wrapper">
+    <div class="card shadow-lg p-4">
+        <h2 class="mb-4 text-center">Add New Department</h2>
+
+        <form asp-action="SaveAdd" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Department*</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="EmployeeCapacity" class="form-label">Employee Capacity*</label>
+                <input asp-for="EmployeeCapacity" type="number" class="form-control" />
+                <span asp-validation-for="EmployeeCapacity" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="EstablishedYear" class="form-label">Established Year*</label>
+                <input asp-for="EstablishedYear" type="number" class="form-control" />
+                <span asp-validation-for="EstablishedYear" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Location" class="form-label">Location</label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+
+            <!-- Submit and Cancel Buttons -->
+            <div class="row mt-4">
+                <div class="col-md-6 text-end">
+                    <button type="submit" class="btn btn-primary w-75">Save</button>
+                </div>
+                <div class="col-md-6 text-start">
+                    <a asp-action="Index" class="btn btn-secondary w-75">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            $("#managerId").change(function () {
+                var managerId = $(this).val();
+                if (managerId) {
+                    $.ajax({
+                        url: '/Department/GetManagerDetails',
+                        type: 'GET',
+                        data: { id: managerId },
+                        success: function (data) {
+                            $("#managerPhone").val(data.phoneNumber);
+                            $("#managerEmail").val(data.email);
+                        },
+                        error: function () {
+                            $("#managerPhone").val('');
+                            $("#managerEmail").val('');
+                        }
+                    });
+                } else {
+                    $("#managerPhone").val('');
+                    $("#managerEmail").val('');
+                }
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if (TempData["Success"] != null)
+        {
+            <text>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'تم الحفظ بنجاح',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+            </text>
+        }
+    </script>
+}
+
+<style>
+    .form-wrapper {
+        max-width: 700px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        font-size: 1em;
+    }
+
+    .btn {
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 1em;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        text-decoration: none;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+</style>

@@ -1,0 +1,19 @@
+﻿@model TaskViewModel
+@{
+    ViewData["Title"] = "Edit Employee";
+    Layout = "_EmpLayout";
+}
+
+<form asp-action="SaveEdit" asp-controller="Task" asp-route-id="ViewBag.TaskId">
+    <input type="hidden" name="id" value="@ViewBag.TaskId" />
+    <partial name="FormTaskPartial" />
+
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+

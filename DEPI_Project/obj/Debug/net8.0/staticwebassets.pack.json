@@ -1,0 +1,569 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\DEPI_Project.bundle.scp.css",
+      "PackagePath": "staticwebassets\\DEPI_Project.82sd85ar51.bundle.scp.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\.gitignore",
+      "PackagePath": "staticwebassets\\.gitignore"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\css\\style-preset.css",
+      "PackagePath": "staticwebassets\\assets\\css\\style-preset.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\css\\style.css",
+      "PackagePath": "staticwebassets\\assets\\css\\style.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\demo\\chart-area-demo.js",
+      "PackagePath": "staticwebassets\\assets\\demo\\chart-area-demo.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\demo\\chart-bar-demo.js",
+      "PackagePath": "staticwebassets\\assets\\demo\\chart-bar-demo.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\demo\\chart-pie-demo.js",
+      "PackagePath": "staticwebassets\\assets\\demo\\chart-pie-demo.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\demo\\datatables-demo.js",
+      "PackagePath": "staticwebassets\\assets\\demo\\datatables-demo.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\feather.css",
+      "PackagePath": "staticwebassets\\assets\\fonts\\feather.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\feather\\feather.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\feather\\feather.eot"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\feather\\feather.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\feather\\feather.svg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\feather\\feather.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\feather\\feather.ttf"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\feather\\feather.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\feather\\feather.woff"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome.css",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome\\fa-brands-400.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome\\fa-brands-400.eot"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome\\fa-brands-400.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome\\fa-brands-400.svg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome\\fa-brands-400.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome\\fa-brands-400.woff"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome\\fa-regular-400.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome\\fa-regular-400.eot"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome\\fa-regular-400.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome\\fa-regular-400.svg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome\\fa-regular-400.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome\\fa-regular-400.woff"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome\\fa-solid-900.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome\\fa-solid-900.eot"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome\\fa-solid-900.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome\\fa-solid-900.svg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome\\fa-solid-900.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome\\fa-solid-900.woff"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\fontawesome\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\fontawesome\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\material.css",
+      "PackagePath": "staticwebassets\\assets\\fonts\\material.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\phosphor\\duotone\\style.css",
+      "PackagePath": "staticwebassets\\assets\\fonts\\phosphor\\duotone\\style.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\tabler-icons.min.css",
+      "PackagePath": "staticwebassets\\assets\\fonts\\tabler-icons.min.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\tabler\\tabler-icons.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\tabler\\tabler-icons.eot"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\tabler\\tabler-icons.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\tabler\\tabler-icons.svg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\tabler\\tabler-icons.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\tabler\\tabler-icons.ttf"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\tabler\\tabler-icons.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\tabler\\tabler-icons.woff"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\fonts\\tabler\\tabler-icons.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\tabler\\tabler-icons.woff2"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\img\\26432779_hr_text1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\26432779_hr_text1.jpg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\img\\4951570_19963.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\4951570_19963.jpg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\img\\Login.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\Login.jpg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\img\\Login2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\Login2.jpg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\img\\Login3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\Login3.jpg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\img\\Logo.jpeg",
+      "PackagePath": "staticwebassets\\assets\\img\\Logo.jpeg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\img\\Logoemp.jpeg",
+      "PackagePath": "staticwebassets\\assets\\img\\Logoemp.jpeg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\img\\Logoemp1.jpeg",
+      "PackagePath": "staticwebassets\\assets\\img\\Logoemp1.jpeg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\img\\Logoemp2.jpeg",
+      "PackagePath": "staticwebassets\\assets\\img\\Logoemp2.jpeg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\img\\basmala.jpeg",
+      "PackagePath": "staticwebassets\\assets\\img\\basmala.jpeg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\img\\error-404-monochrome.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\error-404-monochrome.svg"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\img\\users.png",
+      "PackagePath": "staticwebassets\\assets\\img\\users.png"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\js\\fonts\\custom-font.js",
+      "PackagePath": "staticwebassets\\assets\\js\\fonts\\custom-font.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\js\\pages\\dashboard-default.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pages\\dashboard-default.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\js\\pcoded.js",
+      "PackagePath": "staticwebassets\\assets\\js\\pcoded.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\js\\plugins\\apexcharts.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\apexcharts.min.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\js\\plugins\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\bootstrap.min.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\js\\plugins\\feather.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\feather.min.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\js\\plugins\\popper.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\popper.min.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\assets\\js\\plugins\\simplebar.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\plugins\\simplebar.min.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\css\\EmpDash\\EmpTable.css",
+      "PackagePath": "staticwebassets\\css\\EmpDash\\EmpTable.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\css\\Formpartial.css",
+      "PackagePath": "staticwebassets\\css\\Formpartial.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\css\\NotFound\\NotStyle.css",
+      "PackagePath": "staticwebassets\\css\\NotFound\\NotStyle.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\css\\prostyle.css",
+      "PackagePath": "staticwebassets\\css\\prostyle.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\css\\styles.css",
+      "PackagePath": "staticwebassets\\css\\styles.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\image\\add.png",
+      "PackagePath": "staticwebassets\\image\\add.png"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\image\\delete.png",
+      "PackagePath": "staticwebassets\\image\\delete.png"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\image\\dowload.png",
+      "PackagePath": "staticwebassets\\image\\dowload.png"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\image\\edit.png",
+      "PackagePath": "staticwebassets\\image\\edit.png"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\js\\Candidate.js",
+      "PackagePath": "staticwebassets\\js\\Candidate.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\js\\Dept\\Deptscript.js",
+      "PackagePath": "staticwebassets\\js\\Dept\\Deptscript.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\js\\Job.js",
+      "PackagePath": "staticwebassets\\js\\Job.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\js\\Pagination.js",
+      "PackagePath": "staticwebassets\\js\\Pagination.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\js\\attendance-script.js",
+      "PackagePath": "staticwebassets\\js\\attendance-script.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\js\\datatables-simple-demo.js",
+      "PackagePath": "staticwebassets\\js\\datatables-simple-demo.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\js\\empscript.js",
+      "PackagePath": "staticwebassets\\js\\empscript.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\js\\holiday-script.js",
+      "PackagePath": "staticwebassets\\js\\holiday-script.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\js\\leavescript.js",
+      "PackagePath": "staticwebassets\\js\\leavescript.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\js\\scripts.js",
+      "PackagePath": "staticwebassets\\js\\scripts.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.DEPI_Project.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.DEPI_Project.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.DEPI_Project.props",
+      "PackagePath": "build\\DEPI_Project.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.DEPI_Project.props",
+      "PackagePath": "buildMultiTargeting\\DEPI_Project.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.DEPI_Project.props",
+      "PackagePath": "buildTransitive\\DEPI_Project.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

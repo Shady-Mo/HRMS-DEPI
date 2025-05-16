@@ -1,0 +1,420 @@
+﻿
+@using DEPI_Project.Models.CorpMgmt_System; 
+@model List<Project>
+@{
+    ViewData["Title"] = "Projects Board";
+    Layout = "_testLayout"; 
+
+    // --- Data Preparation (Ideally done in Controller, but shown here for clarity) ---
+
+    
+    var statusColumns = new Dictionary<ProjectStatus, string> {
+        { ProjectStatus.Canceled, "Canceled Projects" },
+        { ProjectStatus.Active, "Running" },
+        { ProjectStatus.OnHold, "On Hold" },
+        { ProjectStatus.Completed, "Finished" }
+    };
+
+    // 2. Group projects by status
+    var projectsByStatus = Model
+        .Where(p => statusColumns.ContainsKey(p.Status)) // Filter for statuses we want to display
+        .GroupBy(p => p.Status)
+        .ToDictionary(g => g.Key, g => g.ToList());
+
+   
+  
+
+//     Placeholder for missing data (Replace with actual properties)
+    Random rnd = new Random();
+    Func<Project, DateTime> GetCreatedDate = p => p.StartDate; 
+    Func<Project, PriorityLevel> GetPriority = p => (PriorityLevel)rnd.Next(0, 2); 
+    Func<Project, int> GetCommentsCount = p => rnd.Next(5, 20); 
+    Func<Project, int> GetBugCount = p => rnd.Next(0, 10);     
+    string placeholderAvatar = "/assets/img/users.png"; 
+}
+
+@* Include Font Awesome *@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+@* Reference your custom CSS file if preferred, or use the <style> block below *@
+@* <link href="/css/project-board-style.css" rel="stylesheet" /> *@
+
+<div class="container-fluid my-4 project-board-container">
+
+    <div class="row project-board g-3">
+        @foreach (var statusEntry in statusColumns)
+        {
+            var currentStatus = statusEntry.Key;
+            var columnTitle = statusEntry.Value;
+            var projectsInColumn = projectsByStatus.ContainsKey(currentStatus) ? projectsByStatus[currentStatus] : new List<Project>();
+            int projectCount = projectsInColumn.Count;
+
+            <div class="col-lg-3 col-md-6 project-column">
+                <div class="column-header mb-3">
+                    <h5 class="column-title">@columnTitle</h5>
+                    <p class="column-subtitle text-muted small mb-0">@projectCount @(projectCount == 1 ? "project" : "projects")</p>
+                </div>
+
+                <div class="column-cards">
+                    @foreach (var project in projectsInColumn)
+                    {
+                        // --- Card Data Setup ---
+                       
+                        DateTime createdDate = GetCreatedDate(project); 
+                        PriorityLevel priority = GetPriority(project); 
+                        int commentsCount = GetCommentsCount(project);
+                        int bugCount = GetBugCount(project); 
+                        int openTasks = project.Tasks?.Count(t => t.Status != DEPI_Project.Models.CorpMgmt_System.TaskStatus.Completed) ?? 0;
+                        var progress = project.CalculateProgressPercentage();
+                        var teamMembers = project.AssignedEmployees?.Select(pe => pe.Employee).ToList() ?? new List<Employee>();
+
+                        <div class="card project-card mb-3 shadow-sm">
+                            <div class="card-body p-3">
+                                <!-- Card Header -->
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <div>
+                                        <h6 class="card-title mb-1">
+                                            <i class="fas fa-check-circle text-success me-1"></i> @project.Name
+                                        </h6>
+                                        <span class="text-muted small">@openTasks open tasks</span>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                       
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-icon dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-h text-muted"></i>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" asp-action="Edit" asp-route-id="@project.ProjectId"><i class="fas fa-edit fa-fw me-2"></i>Edit</a></li>
+                                                <li><a class="dropdown-item text-danger" asp-action="Delete" asp-route-id="@project.ProjectId" onclick="return confirm('Are you sure?');"><i class="fas fa-trash-alt fa-fw me-2"></i>Delete</a></li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><a class="dropdown-item" href="#"><i class="fas fa-eye fa-fw me-2"></i>View Details</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Description -->
+                                <p class="card-text project-description text-muted mb-3">
+                                    @project.Description
+                                </p>
+
+                                <!-- Metadata Grid -->
+                                <div class="row project-metadata mb-3 gx-2">
+                                    <div class="col-6 mb-1">
+                                        <span class="metadata-label">Created:</span>
+                                        <span class="metadata-value"><i class="far fa-calendar-alt me-1"></i> @createdDate.ToString("MMM dd, yyyy")</span>
+                                    </div>
+                                    <div class="col-6 mb-1">
+                                        <span class="metadata-label">Team Leader:</span>
+                                        <span class="metadata-value">@project.Manager?.FirstName</span>
+                                    </div>
+                                    <div class="col-6 mb-1">
+                                        <span class="metadata-label">Priority:</span>
+                                        <span class="metadata-value">
+                                            @if (priority == PriorityLevel.High)
+                                            {
+                                                <i class="fas fa-arrow-up text-danger me-1"></i> <span class="text-danger">High</span>
+                                            }
+                                            else if (priority == PriorityLevel.Medium)
+                                            {
+                                                <i class="fas fa-arrow-down text-warning me-1"></i> <span class="text-warning">Medium</span>
+                                            }
+                                            else
+                                            {
+                                                <i class="fas fa-arrow-down text-success me-1"></i> <span class="text-success">Low</span>
+                                            }
+                                        </span>
+
+                                    </div>
+                                    <div class="col-6 mb-1">
+                                        <span class="metadata-label">Deadline:</span>
+                                        <span class="metadata-value"><i class="far fa-calendar-times me-1"></i> @project.DueDate.ToString("MMM dd, yyyy")</span>
+                                    </div>
+                                    <div class="col-6 mb-1">
+                                        <span class="metadata-label">Comments:</span>
+                                        <span class="metadata-value">@commentsCount</span>
+                                    </div>
+                                    <div class="col-6 mb-1">
+                                        <span class="metadata-label">Bug:</span>
+                                        <span class="metadata-value">@bugCount</span>
+                                    </div>
+                                </div>
+
+                                <!-- Team & Progress -->
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="team-avatars">
+                                        <span class="metadata-label me-2">Team:</span>
+                                        @foreach (var member in teamMembers.Take(3))
+                                        {
+                                            <img src="~/assets/img/users.png" alt="@member.FirstName" class="rounded-circle avatar" width="24" height="24" title="@member.FirstName @member.LastName" data-bs-toggle="tooltip" />
+                                        }
+                                        @if (teamMembers.Count > 3)
+                                        {
+                                            <span class="avatar-more-badge" data-bs-toggle="tooltip" title="@(teamMembers.Count - 3) more">+@(teamMembers.Count - 3)</span>
+                                        }
+                                        @if (!teamMembers.Any())
+                                        {
+                                            <span class="text-muted small">N/A</span>
+                                        }
+                                    </div>
+                                    <div class="project-progress d-flex align-items-center">
+                                        <div class="progress me-2 flex-grow-1" style="height: 6px;">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: @progress%;" aria-valuenow="@progress" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <span class="progress-percentage text-muted">@progress.ToString("F0")%</span>
+                                    </div>
+                                </div>
+                            </div> @* End Card Body *@
+                        </div> @* End Card *@
+                    } @* End Project Loop *@
+
+                    @if (!projectsInColumn.Any())
+                    {
+                        <div class="text-center text-muted p-3"><em>No projects in this stage.</em></div>
+                    }
+
+                </div> @* End Column Cards *@
+            </div> @* End Column *@
+        } @* End Status Loop *@
+    </div> @* End Row / Board *@
+
+</div> @* End Container *@
+
+<!-- Floating Action Button -->
+<a asp-action="Add" asp-controller="Project" title="Create Project" data-bs-toggle="tooltip" data-bs-placement="right">
+    <i class="fas fa-plus"></i>
+</a>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize Bootstrap tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+}
+
+@* CSS Styles (Place in a .css file or keep here) *@
+<style>
+   body {
+        background-color: #f4f7f6; 
+    }
+
+    .project-board-container {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .project-column {
+        /* Add styling for the column itself if needed, e.g., background */
+        background-color: #f8f9fa; 
+         border-radius: 8px; 
+         padding: 15px; 
+    }
+
+    .column-header {
+        padding-bottom: 5px;
+         border-bottom: 1px solid #e0e0e0;
+    }
+
+    .column-title {
+        font-weight: 600;
+        color: #555;
+        font-size: 1.1rem;
+        margin-bottom: 0.1rem;
+    }
+
+    .column-subtitle {
+        font-size: 0.8rem;
+    }
+
+
+    .project-card {
+        border: 1px solid #e3e3e3;
+        border-radius: 8px;
+        transition: box-shadow 0.2s ease-in-out;
+    }
+
+        .project-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+        }
+
+
+        .project-card .card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+            .project-card .card-title i {
+                font-size: 0.9em;
+            }
+
+    .project-tag {
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 0.2em 0.6em;
+        border-radius: 4px;
+        color: white;
+    }
+    /* Define tag colors (add more as needed) */
+    .tag-testing {
+        background-color: #28a745;
+    }
+    /* Green */
+    .tag-android {
+        background-color: #dc3545;
+    }
+    /* Red */
+    .tag-iphone {
+        background-color: #343a40;
+    }
+    /* Dark */
+    .tag-website {
+        background-color: #0d6efd;
+    }
+    /* Blue */
+    .tag-default {
+        background-color: #6c757d;
+    }
+    /* Gray */
+
+
+    .project-description {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        /* Limit description height if needed */
+        max-height: 4.2em;  /* Adjust based on line-height * number of lines */
+         overflow: hidden; 
+         text-overflow: ellipsis; 
+         display: -webkit-box; 
+         -webkit-line-clamp: 3;  /* Number of lines to show */
+         -webkit-box-orient: vertical; 
+    }
+
+    .project-metadata {
+        font-size: 0.8rem;
+    }
+
+    .metadata-label {
+        color: #6c757d; /* Gray */
+         display: block;  /* uncomment if you want labels on their own line */
+        margin-right: 5px;
+    }
+
+    .metadata-value {
+        color: #343a40; /* Darker gray */
+        font-weight: 500;
+    }
+
+        .metadata-value i {
+            color: #6c757d; /* Match label color for icons */
+        }
+
+
+    .team-avatars .avatar {
+        border: 2px solid white;
+        margin-left: -10px; /* Overlap avatars */
+        box-shadow: 0 0 3px rgba(0,0,0,0.2);
+    }
+
+        .team-avatars .avatar:first-child {
+            margin-left: 0;
+        }
+
+    .team-avatars .avatar-more-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-color: #e9ecef; /* Light gray */
+        color: #495057;
+        font-size: 0.7rem;
+        font-weight: 600;
+        margin-left: -10px;
+        border: 2px solid white;
+        box-shadow: 0 0 3px rgba(0,0,0,0.2);
+        cursor: default;
+    }
+
+    .project-progress {
+        width: 120px; /* Adjust width as needed */
+    }
+
+    .progress {
+        height: 6px !important;
+        border-radius: 3px;
+        background-color: #e9ecef;
+    }
+
+    .progress-bar {
+        border-radius: 3px;
+        background-color: #0d6efd !important; /* Match image blue */
+    }
+
+    .progress-percentage {
+        font-size: 0.8rem;
+        font-weight: 500;
+        min-width: 30px; /* Ensure space for percentage */
+        text-align: right;
+    }
+
+    /* Dropdown Icon Button */
+    .btn-icon {
+        padding: 0.1rem 0.3rem;
+        line-height: 1;
+        background: none;
+        border: none;
+    }
+
+        .btn-icon:hover {
+            background-color: #f1f1f1;
+        }
+
+    .dropdown-toggle::after {
+        display: none; /* Hide default caret */
+    }
+
+    .dropdown-menu {
+        font-size: 0.9rem;
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15) !important;
+        border: none;
+    }
+
+    .dropdown-item i.fa-fw {
+        color: #6c757d;
+    }
+
+
+    /* Floating Action Button (FAB) */
+    .fab {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        width: 56px;
+        height: 56px;
+        background-color: #0d6efd; /* Primary blue */
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        z-index: 1050; /* Ensure it's above other content */
+    }
+
+        .fab:hover {
+            background-color: #0b5ed7; /* Darker blue on hover */
+            color: white;
+        }
+</style>

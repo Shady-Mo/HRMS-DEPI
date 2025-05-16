@@ -1,0 +1,88 @@
+﻿@model DEPI_Project.Models.CorpMgmt_System.Department
+
+@{
+    ViewData["Title"] = "Edit Department";
+}
+
+<h1>Edit Department</h1>
+
+<h4>Department</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SaveEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DepartmentId" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Department*</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ManagerId" class="control-label">Head of Department*</label>
+                <select asp-for="ManagerId" asp-items="ViewBag.ManagersList" class="form-control" id="managerId">
+                    <option value="" selected>Select Manager</option>
+                </select>
+                <span asp-validation-for="ManagerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Phone*</label>
+                <input id="managerPhone" class="form-control" disabled value="@Model.Manager?.PhoneNumber" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Email*</label>
+                <input id="managerEmail" class="form-control" disabled value="@Model.Manager?.Email" />
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeCapacity" class="control-label">Employee Capacity*</label>
+                <input asp-for="EmployeeCapacity" class="form-control" type="number" />
+                <span asp-validation-for="EmployeeCapacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstablishedYear" class="control-label">Established Year*</label>
+                <input asp-for="EstablishedYear" class="form-control" type="number" />
+                <span asp-validation-for="EstablishedYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label">Location</label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-danger">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            $("#managerId").change(function () {
+                var managerId = $(this).val();
+                if (managerId) {
+                    $.ajax({
+                        url: '/Department/GetManagerDetails',
+                        type: 'GET',
+                        data: { id: managerId },
+                        success: function (data) {
+                            $("#managerPhone").val(data.phoneNumber);
+                            $("#managerEmail").val(data.email);
+                        },
+                        error: function () {
+                            $("#managerPhone").val('');
+                            $("#managerEmail").val('');
+                        }
+                    });
+                } else {
+                    $("#managerPhone").val('');
+                    $("#managerEmail").val('');
+                }
+            });
+        });
+    </script>
+}

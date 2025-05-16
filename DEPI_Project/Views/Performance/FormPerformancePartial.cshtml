@@ -1,0 +1,102 @@
+﻿@model Performance
+<link href="/css/Formpartial.css" rel="stylesheet" />
+<div class="form-wrapper ">
+    <div class="card shadow-lg p-4">
+        <form method="post">
+            <div class="row">
+                <!-- Review -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Review" class="form-label"></label>
+                    <input asp-for="Review" class="form-control" />
+                    <span asp-validation-for="Review" class="text-danger"></span>
+                </div>
+
+                <!-- Date -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Date" class="form-label"></label>
+                    <input asp-for="Date" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Description -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Description" class="form-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Manager -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="ManagerId" class="form-label">Manager</label>
+                    <select asp-for="ManagerId" asp-items="ViewBag.EmployeeList" class="form-select">
+                        <option value="0">-- Select Manager --</option>
+                    </select>
+                    <span asp-validation-for="ManagerId" class="text-danger"></span>
+                </div>
+
+                <!-- Score Type -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Score" class="form-label"></label>
+                    <select asp-for="Score" asp-items="Html.GetEnumSelectList<Score>()" class="form-select">
+                        <option value="">-- Score --</option>
+                    </select>
+                    <span asp-validation-for="Score" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Task -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="TaskId" class="form-label">Task</label>
+                    <select asp-for="TaskId" asp-items="ViewBag.TaskList" class="form-select">
+                        <option value="0">-- Select Task --</option>
+                    </select>
+                    <span asp-validation-for="TaskId" class="text-danger"></span>
+                </div>
+
+                <!-- Employee -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="EmployeeId" class="form-label">Employee</label>
+                    <select asp-for="EmployeeId" asp-items="ViewBag.EmployeeList" class="form-select">
+                        <option value="0">-- Select Employee --</option>
+                    </select>
+                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            
+
+            <!-- Submit and Back Buttons Row -->
+            <div class="row mt-4">
+                <div class="col-md-6 text-end">
+                    <button type="submit" class="btn btn-primary w-75">Submit</button>
+                </div>
+                <div class="col-md-6 text-start">
+                    <a asp-action="Index" asp-controller="Task" class="btn btn-secondary w-75">Back</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if (TempData["Success"] != null)
+        {
+            <text>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'تم الحفظ بنجاح',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+            </text>
+        }
+    </script>
+}

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DEPI_Project.Models.CorpMgmt_System.Holiday>
+@{
+    ViewData["Title"] = "Holidays";
+    Layout = "_EmpLayout";
+}
+<link href="/css/EmpDash/EmpTable.css" rel="stylesheet" />
+<div class="container-fluid py-4">
+    <div class="attendance-table-card">
+        <table class="table table-striped custom-attendance-table text-center">
+            <thead>
+                <tr>
+                    <th>Holiday Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Duration</th>
+                    @* <th>Created By</th> *@
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.HolidayName</td>
+                        <td>@item.StartDate.ToString("MM/dd/yyyy")</td>
+                        <td>@item.EndDate.ToString("MM/dd/yyyy")</td>
+                        <td>@item.HolidayDuration day(s)</td>
+                        @* <td>@item.AppUser?.FirstName @item.AppUser?.LastName</td> *@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+   
+</div>

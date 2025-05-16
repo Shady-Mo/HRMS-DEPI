@@ -1,0 +1,160 @@
+﻿@model DEPI_Project.Models.CorpMgmt_System.Project
+@{
+    ViewData["Title"] = "Delete Project";
+    Layout = "_testLayout";
+}
+<link href="/css/prostyle.css" rel="stylesheet" />
+
+<div class="container my-4">
+    <!-- Page Title -->
+    <div class="page-title d-flex align-items-center">
+        <i class="fas fa-trash fa-lg text-danger"></i>
+        <span>Delete Project</span>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                Are you sure you want to delete the project '@Model.Name'?
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Project Name</label>
+                        <div class="form-control-plaintext">@Model.Name</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Manager</label>
+                        <div class="form-control-plaintext">@Model.Manager?.FirstName</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Start Date</label>
+                        <div class="form-control-plaintext">@Model.StartDate.ToString("MM/dd/yyyy")</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Due Date</label>
+                        <div class="form-control-plaintext">@Model.DueDate.ToString("MM/dd/yyyy")</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Budget</label>
+                        <div class="form-control-plaintext">$@Model.Budget.ToString("N2")</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Department</label>
+                        <div class="form-control-plaintext">@Model.Department?.Name</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Priority</label>
+                        <div class="form-control-plaintext">@Model.Priority.ToString()</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Status</label>
+                        <div class="form-control-plaintext">
+                            @{
+                                string statusClass = Model.Status switch
+                                {
+                                    ProjectStatus.Active => "bg-success",
+                                    ProjectStatus.Completed => "bg-info",
+                                    ProjectStatus.OnHold => "bg-warning",
+                                    ProjectStatus.Canceled => "bg-danger",
+                                    _ => "bg-secondary"
+                                };
+                            }
+                            <span class="badge @statusClass">@Model.Status.ToString()</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Tasks</label>
+                        <div class="form-control-plaintext">@(Model.Tasks?.Count(t => t.Status != DEPI_Project.Models.CorpMgmt_System.TaskStatus.Completed) ?? 0) Open / @(Model.Tasks?.Count(t => t.Status == DEPI_Project.Models.CorpMgmt_System.TaskStatus.Completed) ?? 0) Completed</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Progress</label>
+                        <div class="form-control-plaintext">@Model.CalculateProgressPercentage().ToString("F0")%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Assigned Employees</label>
+                        <div class="form-control-plaintext">
+                            @if (Model.AssignedEmployees != null)
+                            {
+                                @string.Join(", ", Model.AssignedEmployees.Select(m => m.EmployeeId))
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Description</label>
+                        <div class="form-control-plaintext">@Model.Description</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-outline-secondary px-4">
+                    <i class="fas fa-arrow-left me-2"></i>Back
+                </a>
+                <form asp-action="SaveDelete" method="post">
+                    <input type="hidden" name="id" value="@Model.ProjectId" />
+                    <button type="submit" class="btn btn-danger px-4">
+                        <i class="fas fa-trash me-2"></i>Confirm Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .page-title {
+        font-size: 28px;
+        font-weight: bold;
+        border-bottom: 2px solid #dc3545;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+        .page-title i {
+            margin-right: 10px;
+        }
+</style>

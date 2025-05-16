@@ -1,0 +1,204 @@
+﻿@model EmployeeViewModel
+@{
+    ViewData["Title"] = "Add Employee";
+    Layout = "_testLayout";
+}
+<link href="/css/Formpartial.css" rel="stylesheet" />
+
+<div class="form-wrapper ">
+    <div class="card shadow-lg p-4">
+        <form asp-action="SaveAdd" asp-controller="Employee">
+            <div class="row">
+                <!-- First Name -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="FirstName" class="form-label"></label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <!-- Last Name -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="LastName" class="form-label"></label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- User Name -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="UserName" class="form-label"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Address -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Address" class="form-label"></label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+
+                <!-- Nationality -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Nationality" class="form-label"></label>
+                    <input asp-for="Nationality" class="form-control" />
+                    <span asp-validation-for="Nationality" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Phone Number -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="PhoneNumber" class="form-label"></label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Position -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Position" class="form-label"></label>
+                    <input asp-for="Position" class="form-control" />
+                    <span asp-validation-for="Position" class="text-danger"></span>
+                </div>
+
+                <!-- Contract Type -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="ContractType" class="form-label"></label>
+                    <select asp-for="ContractType" asp-items="Html.GetEnumSelectList<ContractType>()" class="form-select">
+                        <option value="">-- Select Contract Type --</option>
+                    </select>
+                    <span asp-validation-for="ContractType" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Hire Date -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="HireDate" class="form-label"></label>
+                    <input asp-for="HireDate" class="form-control" />
+                    <span asp-validation-for="HireDate" class="text-danger"></span>
+                </div>
+
+                <!-- Salary -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Salary" class="form-label"></label>
+                    <input asp-for="Salary" class="form-control" />
+                    <span asp-validation-for="Salary" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Department -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="DeptId" class="form-label">Department Name</label>
+                    <select asp-for="DeptId" asp-items="ViewBag.DeptList" class="form-select">
+                        <option value="0">-- Select Department --</option>
+                    </select>
+                    <span asp-validation-for="DeptId" class="text-danger"></span>
+                </div>
+
+                <!-- Status -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="EmpStatus" class="form-label"></label>
+                    <select asp-for="EmpStatus" asp-items="Html.GetEnumSelectList<StatusType>()" class="form-select">
+                        <option value="">-- Select Status --</option>
+                    </select>
+                    <span asp-validation-for="EmpStatus" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Marital Status -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="MaritalStatus" class="form-label"></label>
+                    <select asp-for="MaritalStatus" asp-items="Html.GetEnumSelectList<MaritalStatus>()" class="form-select">
+                        <option value="">-- Marital Status --</option>
+                    </select>
+                    <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+                </div>
+
+                <!-- Gender -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Gender" class="form-label"></label>
+                    <select asp-for="Gender"  class="form-select">
+                        <option value="">-- Select Gender --</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Skills -->
+                <div class="mb-3 col">
+                    <label asp-for="Skills" class="form-label"></label>
+                    <textarea asp-for="Skills" class="form-control"></textarea>
+                    <span asp-validation-for="Skills" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Type" class="form-label"></label>
+                    @* <select asp-for="Type" class="form-select"> *@
+                    @*     <option value="">-- Select Type --</option> *@
+                    @*     <option value="Employee">Employee</option> *@
+                    @*     <option value="Manager">Manager</option> *@
+                    @*     <option value="Admin">Admin</option> *@
+                    @* </select> *@
+					<input asp-for="Type" class="form-control" value="Employee" readonly/>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <!-- Submit and Back Buttons Row -->
+            <div class="row mt-4">
+                <div class="col-md-6 text-end">
+                    <button type="submit" class="btn btn-primary w-75">Submit</button>
+                </div>
+                <div class="col-md-6 text-start">
+                    <a asp-action="Index" asp-controller="Employee" class="btn btn-secondary w-75">Back</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if (TempData["Success"] != null)
+        {
+            <text>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'تم الحفظ بنجاح',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+            </text>
+        }
+
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}
+
+

@@ -1,0 +1,119 @@
+﻿@model IEnumerable<DEPI_Project.Models.CorpMgmt_System.Employee>
+@{
+    ViewData["Title"] = "Admins";
+    Layout = "_testLayout";
+}
+<link href="/css/prostyle.css" rel="stylesheet" />
+
+<div class="container my-4">
+    <!-- Page Title -->
+    <div class="page-title d-flex align-items-center">
+        <i class="fas fa-users fa-lg"></i>
+        <span>Admins</span>
+    </div>
+    <!-- Toolbar فوق الجدول -->
+    <div class="d-flex justify-content-between align-items-center px-3 py-2" style="background-color: #e9f0fc; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+        <div class="d-flex align-items-center gap-2">
+            <i class="fas fa-search text-secondary"></i>
+            <input type="text" id="searchInput" class="form-control" placeholder="Search" style="width: 250px;">
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <a asp-action="ExportToExcel" class="btn btn-primary circle-btn" title="Download Excel">
+                <i class="fas fa-download"></i>
+            </a>
+        </div>
+    </div>
+    <!-- Table -->
+    <div class="table-responsive" style="overflow-x: auto;">
+        <table class="table table-hover align-middle text-center" style="min-width: 1600px;">
+            <thead class="table-light">
+                <tr>
+                    <th style="min-width: 60px;">
+                        <input type="checkbox" id="select-all" />
+                    </th>
+                    <th style="min-width: 150px;">Employee Name</th>
+                    <th style="min-width: 150px;">Email</th>
+                    <th style="min-width: 120px;">Role</th>
+                    <th style="min-width: 120px;">Mobile</th>
+                    <th style="min-width: 120px;">Department</th>
+                    <th style="min-width: 150px;">Project</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><input type="checkbox" class="row-checkbox" /></td>
+                        <td class="emp-name">@item.FirstName @item.LastName</td>
+                        <td>@item.Email</td>
+                        <td>@item.Position</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>@(item.Department?.Name ?? "N/A")</td>
+                        <td>@(item.Projects != null && item.Projects.Any() ? item.Projects.First().Name : "N/A")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // فلترة البحث بالاسم
+        document.getElementById('nameSearchInput').addEventListener('input', function () {
+            const filter = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#managerTable tbody tr');
+
+            rows.forEach(row => {
+                const nameCell = row.querySelector('.emp-name');
+                if (nameCell && nameCell.textContent.toLowerCase().includes(filter)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // تحديد الكل
+        document.getElementById('select-all').addEventListener('change', function () {
+            document.querySelectorAll('.row-checkbox').forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
+    </script>
+}
+
+<style>
+    .page-title {
+        font-size: 28px;
+        font-weight: bold;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+        .page-title i {
+            margin-right: 10px;
+            color: #007bff;
+        }
+
+    .circle-btn {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    table tbody tr:hover {
+        background-color: #f1f1f1;
+        cursor: pointer;
+    }
+</style>

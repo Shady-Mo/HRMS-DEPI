@@ -1,0 +1,174 @@
+﻿@model DEPI_Project.DTOs.LoginDTO
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_Layout";
+}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url("/assets/img/Login.jpg");
+        background-repeat: no-repeat;
+        font-family: Arial, sans-serif;
+    }
+
+    .login-form {
+        position: absolute;
+        top: 50%;
+        right: 60px;
+        transform: translateY(-50%);
+        width: 600px;
+        padding: 40px;
+        background-color: rgba(255, 255, 255, 0.92);
+        border-radius: 15px;
+    }
+
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+    .user-type-buttons {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 25px;
+        gap: 10px;
+    }
+
+        .user-type-buttons button {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+            .user-type-buttons button.active {
+                opacity: 1;
+            }
+
+    .admin-btn {
+        background-color: green;
+    }
+
+    .employee-btn {
+        background-color: #FF5200;
+    }
+
+    .manager-btn {
+        background-color: #6777EF;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+        text-align: left;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+
+    .login-btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        width: 100%;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        margin-top: 15px;
+    }
+
+    .link-section {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9em;
+        margin-bottom: 20px;
+    }
+
+        .link-section a {
+            text-decoration: none;
+            color: #198754;
+        }
+
+    .Link-sign {
+        color: #198754;
+    }
+
+    .stafford-heading {
+        margin-bottom: 50px;
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+        .stafford-heading span {
+            color: #198754;
+            text-shadow: 1px 1px 2px rgba(0, 102, 255, 0.3);
+            letter-spacing: 3px;
+        }
+</style>
+
+<div class="login-form ">
+    <h2 class="stafford-heading">WELCOME TO <span>WORKIVIO</span></h2>
+
+    <div class="user-type-buttons">
+        <button type="button" class="admin-btn" onclick="setUserType('Admin', this)">Admin</button>
+        <button type="button" class="employee-btn" onclick="setUserType('Employee', this)">Employee</button>
+        <button type="button" class="manager-btn" onclick="setUserType('Manager', this)">Manager</button>
+    </div>
+
+    <form asp-action="Login" method="post">
+        <input type="hidden" name="UserType" id="userType" />
+
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password">Password</label>
+            <input asp-for="Password" class="form-control" type="password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="link-section">
+            <label><input type="checkbox" /> Remember me</label>
+            <a href="#">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="login-btn">Login</button>
+
+        <hr class="my-4" />
+
+        @* <p class="text-center mt-2"> *@
+        @*     Need an account? *@
+        @*     <a asp-action="RegistNewEmployee" class="fw-bold text-decoration-none Link-sign">Sign Up</a> *@
+        @* </p> *@
+
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        function setUserType(type, btn) {
+            document.getElementById('userType').value = type;
+            const buttons = document.querySelectorAll('.user-type-buttons button');
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+    </script>
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

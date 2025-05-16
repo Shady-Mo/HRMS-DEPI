@@ -1,0 +1,301 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "_testLayout";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #ECF0F4;
+        }
+
+        .card {
+            border-radius: 15px;
+        }
+
+        .stat-card {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .dashboard-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            border-left: 5px solid #6C89E4;
+            padding-left: 15px;
+        }
+
+        .active {
+            background-color: rgba(25, 135, 84, 0.15);
+            color: #198754;
+            border-radius: 4px;
+			padding: 5px ;
+        }
+
+        .inactive {
+            background-color: rgba(241, 21, 65, 0.15);
+            color: #F11541;
+            border-radius: 4px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="dashboard-title">Admin Dashboard</h2>
+            <div>
+                <span class="me-3">Welcome, Admin</span>
+                <form asp-controller="Auth" asp-action="Logout" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-outline-secondary btn-sm">Logout</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row g-4 mb-4">
+            <!-- Employees on Leave -->
+            <div class="col-md-3">
+                <div class="card text-white shadow-sm p-3" style="background: linear-gradient(to right, #fb8c00, #fbc02d); border-radius: 15px;">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="mb-1">Employees on Leave</h6>
+                            <h3 class="mb-2">@ViewBag.OnLeaveCount</h3>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-light" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        <div style="font-size: 2.5rem; opacity: 0.2;">
+                            📅
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Departments -->
+            <div class="col-md-3">
+                <div class="card text-white shadow-sm p-3" style="background: linear-gradient(to right, #3949ab, #5c6bc0); border-radius: 15px;">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="mb-1">Total Departments</h6>
+                            <h3 class="mb-2">@ViewBag.DepartmentCount</h3>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-light" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <div style="font-size: 2.5rem; opacity: 0.2;">
+                            🏢
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Employees -->
+            <div class="col-md-3">
+                <div class="card text-white shadow-sm p-3" style="background: linear-gradient(to right, #1e88e5, #42a5f5); border-radius: 15px;">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="mb-1">Total Employees</h6>
+                            <h3 class="mb-2">@ViewBag.EmployeeCount</h3>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-light" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div style="font-size: 2.5rem; opacity: 0.2;">
+                            👥
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employees in this Month -->
+            <div class="col-md-3">
+                <div class="card text-white shadow-sm p-3" style="background: linear-gradient(to right, #00796b, #26a69a); border-radius: 15px;">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <h6 class="mb-1">Employees in this Month</h6>
+                            <h3 class="mb-2">@ViewBag.NewThisMonth</h3>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-light" style="width: 50%"></div>
+                            </div>
+                        </div>
+                        <div style="font-size: 2.5rem; opacity: 0.2;">
+                            📅
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Charts -->
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card p-3">
+                    <h5 class="mb-3">Employees by Department</h5>
+                    <canvas id="deptChart" height="200"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-3">
+                    <h5 class="mb-3">Monthly Hiring</h5>
+                    <!-- تأكد هنا من وجود عنصر canvas مرة واحدة فقط -->
+                    <canvas id="monthlyChart" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- Attendance Table -->
+        <div class="row g-4 mt-4">
+            <div class="col-12">
+                <div class="card p-3">
+                    <h5 class="mb-3">Attendance Records</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Employee Name</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Check-In</th>
+                                    <th>Check-Out</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.AttendanceList != null)
+                                {
+                                    int index = 1;
+                                    foreach (var record in ViewBag.AttendanceList)
+                                    {
+                                        <tr>
+                                            <td>@index</td>
+                                            <td>@record.EmployeeName</td>
+                                            <td>@record.Date.ToShortDateString()</td>
+                                            <td>
+                                                @if (record.Status == "Present")
+                                                {
+                                                    <span class="active">Present</span>
+                                                }
+                                                else if (record.Status == "Absent")
+                                                {
+                                                    <span class="inactive">Absent</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-warning text-dark">@record.Status</span>
+                                                }
+                                            </td>
+                                            <td>@record.CheckIn</td>
+                                            <td>@record.CheckOut</td>
+                                        </tr>
+                                        index++;
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="6" class="text-center">No attendance records available.</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+                 // رسم مخطط الأقسام (Pie chart)
+        const deptCanvas = document.getElementById('deptChart');
+        if (deptCanvas) {
+            const deptData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.EmployeesByDepartment));
+
+            const deptLabels = deptData.map(d => d.DepartmentName);
+            const deptCounts = deptData.map(d => d.EmployeeCount);
+
+            new Chart(deptCanvas.getContext('2d'), {
+                type: 'pie',
+                data: {
+                    labels: deptLabels,
+                    datasets: [{
+                        label: 'Employees',
+                        data: deptCounts,
+                        backgroundColor: [
+                            '#2196F3', '#6777EF', '#ffc107', '#dc3545', '#17a2b8',
+                            '#6610f2', '#fd7e14', '#20c997', '#6f42c1', '#e83e8c'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                    },
+                },
+            });
+        }
+
+          // رسم مخطط التوظيف الشهري (Bar chart)
+          const monthlyCanvas = document.getElementById('monthlyChart');
+          if (!monthlyCanvas) {
+            console.error("monthlyCanvas not found!");
+            return;
+          }
+          const monthlyCtx = monthlyCanvas.getContext('2d');
+
+          // استخدم طريقة مختلفة لترميز البيانات، مثلاً باستخدام Newtonsoft.Json
+          const newEmployeesData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.NewEmployeesMonthlyData));
+
+          // قائمة الشهور
+          const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+          // مصفوفة افتراضية لكل شهر
+          let counts = Array(12).fill(0);
+
+          if (newEmployeesData && Array.isArray(newEmployeesData)) {
+            newEmployeesData.forEach(item => {
+              const index = item.Month - 1;
+              if (index >= 0 && index < counts.length) {
+                counts[index] = item.Count || 0;
+              }
+            });
+          }
+
+          console.log("Monthly counts: ", counts);
+
+          new Chart(monthlyCtx, {
+            type: 'bar',
+            data: {
+              labels: months,
+              datasets: [{
+                label: 'New Employees',
+                data: counts,
+                backgroundColor: '#6C89E4'
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    precision: 0
+                  }
+                }
+              }
+            }
+          });
+        });
+    </script>
+</body>
+</html>

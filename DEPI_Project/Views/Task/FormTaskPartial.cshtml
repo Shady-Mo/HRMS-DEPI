@@ -1,0 +1,146 @@
+﻿@model TaskViewModel
+<link href="/css/Formpartial.css" rel="stylesheet" />
+
+<div class="form-wrapper">
+    <div class="card shadow-lg p-4">
+        <form method="post">
+
+            <div class="row">
+                <!-- Task Title -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Title" class="form-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <!-- Description -->
+                <div class="mb-3 col">
+                    <label asp-for="Description" class="form-label"></label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Assigned Employee -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="EmployeeId" class="form-label">Assigned To</label>
+                    <select asp-for="EmployeeId" asp-items="ViewBag.EmployeeList" class="form-select">
+                        <option value="">-- Select Employee --</option>
+                    </select>
+                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                </div>
+                <!-- Priority -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Priority" class="form-label"></label>
+                    <select asp-for="Priority" asp-items="Html.GetEnumSelectList<PriorityLevel>()" class="form-select">
+                        <option value="">-- Select priority --</option>
+                    </select>
+                    <span asp-validation-for="Priority" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Created Date -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="CreatedDate" class="form-label"></label>
+                    <input asp-for="CreatedDate" class="form-control"  />
+                    <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                </div>
+                <!-- Due Date -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="DueDate" class="form-label"></label>
+                    <input asp-for="DueDate" class="form-control"  />
+                    <span asp-validation-for="DueDate" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Start Date -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="StartDate" class="form-label"></label>
+                    <input asp-for="StartDate" class="form-control"  />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <!-- Completed Date -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="CompletedDate" class="form-label"></label>
+                    <input asp-for="CompletedDate" class="form-control"  />
+                    <span asp-validation-for="CompletedDate" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Estimated Hours -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="EstimatedHours" class="form-label"></label>
+                    <input asp-for="EstimatedHours" class="form-control"  />
+                    <span asp-validation-for="EstimatedHours" class="text-danger"></span>
+                </div>
+                <!-- Actual Hours -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="ActualHours" class="form-label"></label>
+                    <input asp-for="ActualHours" class="form-control"  />
+                    <span asp-validation-for="ActualHours" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Project -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="ProjectId" class="form-label">Project</label>
+                    <select asp-for="ProjectId" asp-items="ViewBag.ProjectList" class="form-select">
+                        <option value="">-- Select Project --</option>
+                    </select>
+                    <span asp-validation-for="ProjectId" class="text-danger"></span>
+                </div>
+                <!-- Task Status -->
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Status" class="fw-semibold mb-1">Status</label>
+                    <select asp-for="Status" class="form-select" asp-items="Html.GetEnumSelectList<DEPI_Project.Models.CorpMgmt_System.TaskStatus>()" required>
+                        <option value="">-- Select Status --</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Assigned Manager -->
+                @* <div class="mb-3 col-md-6"> *@
+                @*     <label asp-for="ManagerId" class="form-label">Assigned To</label> *@
+                @*     <select asp-for="ManagerId" asp-items="ViewBag.EmployeeList" class="form-select"> *@
+                @*         <option value="">-- Select Employee --</option> *@
+                @*     </select> *@
+                @*     <span asp-validation-for="ManagerId" class="text-danger"></span> *@
+                @* </div> *@
+            </div>
+
+            <!-- Submit and Back Buttons Row -->
+            <div class="row mt-4">
+                <div class="col-md-6 text-end">
+                    <button type="submit" class="btn btn-primary w-75">Submit</button>
+                </div>
+                <div class="col-md-6 text-start">
+                    <a asp-action="Index" asp-controller="Task" class="btn btn-secondary w-75">Back</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        @if (TempData["Success"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'تم الحفظ بنجاح',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+            </text>
+        }
+    </script>
+}

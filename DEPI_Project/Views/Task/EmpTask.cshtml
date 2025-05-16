@@ -1,0 +1,40 @@
+﻿@model List<ProjectTask>
+@{
+    ViewData["Title"] = "Tasks";
+    Layout = "_EmpLayout";
+}
+
+<link href="/css/EmpDash/EmpTable.css" rel="stylesheet" />
+
+<div class="container-fluid py-4">
+    
+
+    <div class="attendance-table-card">
+        <table class="table table-striped custom-attendance-table text-center">
+            <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Task Name</th>
+                    <th>Start Date</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Completed Date</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var task in Model)
+                {
+                    <tr>
+                        <td>@task.Project?.Name</td>
+                        <td>@task.Title</td>
+                        <td>@task.StartDate.ToString("MM/dd/yyyy")</td>
+                        <td>@task.DueDate.ToString("MM/dd/yyyy")</td>
+                        <td>@task.Status</td>
+                        <td>@task.CompletedDate.ToString("MM/dd/yyyy")</td>  
+   </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

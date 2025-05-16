@@ -1,0 +1,113 @@
+﻿@model List<Leave>
+@{
+    ViewData["Title"] = "Leave";
+    Layout = "_EmpLayout";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+<link href="/css/EmpDash/EmpTable.css" rel="stylesheet" />
+
+<div class="container-fluid py-4">
+    <div class="text-end mb-3">
+        <a asp-action="AddLeave" class="btn btn-primary shadow-sm">
+            <i class="fas fa-plus me-2"></i>Request New Leave
+        </a>
+    </div>
+
+    <div class="attendance-table-card">
+        <table class="table table-striped custom-attendance-table text-center align-middle">
+            <thead>
+                <tr>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Days</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Requested On</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.StartDate.ToString("MM/dd/yyyy")</td>
+                            <td>@item.EndDate.ToString("MM/dd/yyyy")</td>
+                            <td>@item.TotalLeaveDays()</td>
+                            <td>
+                                @{
+                                    string badgeClass = item.Type switch
+                                    {
+                                        LeaveType.Sick => "bg-danger",
+                                        LeaveType.Emergency => "bg-warning text-dark",
+                                        LeaveType.Annual => "bg-info text-dark",
+                                        _ => "bg-secondary"
+                                    };
+                                }
+                                <span class="badge @badgeClass">@item.Type</span>
+                            </td>
+                            <td>
+                                @{
+                                    string statusClass = item.Status switch
+                                    {
+                                        LeaveStatus.Approved => "bg-success",
+                                        LeaveStatus.Rejected => "bg-danger",
+                                        LeaveStatus.Pending => "bg-warning text-dark",
+                                        _ => "bg-secondary"
+                                    };
+                                }
+                                <span class="badge @statusClass">@item.Status</span>
+                            </td>
+                            <td>@item.RequestDate.ToString("MM/dd/yyyy")</td>
+                            <td>
+                                @if (item.Status == LeaveStatus.Pending)
+                                {
+                                    <form asp-action="Cancel" asp-route-id="@item.LeaveId" method="post" onsubmit="return confirmCancel(event)">
+                                        <button type="submit" class="btn btn-sm btn-danger shadow-sm">
+                                            <i class="fas fa-times me-1"></i>Cancel
+                                        </button>
+                                    </form>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" class="text-center py-4">
+                            <i class="fas fa-info-circle me-2"></i>No leave requests found.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmCancel(event) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "This leave request will be cancelled.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc3545',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Yes, Cancel it'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    event.target.submit();
+                }
+            });
+
+            return false;
+        }
+    </script>
+}

@@ -1,0 +1,163 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "_EmpLayout";
+}
+
+<style>
+   
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f7f6; 
+    }
+
+  
+    .profile-card {
+        border: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out; 
+    }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+     
+        .profile-card .card-body {
+            padding: 2rem; 
+        }
+
+   
+    .profile-picture {
+        border: 5px solid #ffffff; 
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+    }
+
+    
+    .profile-name {
+        color: #343a40; 
+        font-weight: 600; 
+        letter-spacing: -0.5px; 
+    }
+
+   
+    .profile-position {
+
+        font-size: 0.95rem;
+        font-weight: 500;
+    }
+
+   
+    .profile-hr {
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)); /* فاصل متدرج */
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    
+    .profile-details dt {
+        font-weight: 600; 
+        color: #495057; 
+        padding-bottom: 0.3rem; 
+    }
+
+    .profile-details dd {
+        color: #212529; 
+        margin-bottom: 0.85rem; 
+    }
+
+    
+    .profile-details .row:last-of-type dd {
+        margin-bottom: 0;
+    }
+
+
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow rounded-4 profile-card">
+               
+                <div class="card-body bg-light p-4 text-center">
+
+                    <img src="/assets/img/users.png" alt="Profile Picture"
+                         class="rounded-circle mb-3 profile-picture" 
+                         style="width: 120px; height: 120px; object-fit: cover;" /> 
+
+                    <h4 class="mb-1 profile-name">@Model.FirstName @Model.LastName</h4> 
+                    <p class="text-muted profile-position">@Model.Position</p> 
+
+                    <hr class="profile-hr" />
+
+                    <div class="row profile-details">
+                        
+                        <div class="col-md-6 mb-4">
+                            <div class="label">Email</div>
+                            <div class="field-box">@Model.Email</div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="label">Salary</div>
+                            <div class="field-box">@Model.Salary.ToString("C")</div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="label">Status</div>
+                            <div class="field-box">@Model.EmpStatus</div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="label">Contract Type</div>
+                            <div class="field-box">@Model.ContractType</div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="label">Marital Status</div>
+                            <div class="field-box">@Model.MaritalStatus</div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="label">Skills</div>
+                            <div class="field-box skills-list">@string.Join(", ", Model.Skills ?? new string[0])</div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="label">Department</div>
+                            <div class="field-box">@Model.Department?.Name</div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="label">Hire Date</div>
+                            <div class="field-box">@Model.HireDate.ToShortDateString()</div>
+                        </div>
+                    </div>
+
+
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .label {
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 0.4rem;
+
+    }
+
+    .field-box {
+        background-color: #e9ecef;
+        padding: 0.6rem 1rem;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        color: #212529;
+    }
+
+
+</style>
