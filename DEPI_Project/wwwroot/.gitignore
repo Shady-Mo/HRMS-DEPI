@@ -42,3 +42,10 @@ ScaffoldingReadMe.txt
 *.mdb
 *.pidb
 *.svclog
+
+
+# Secrets and sensitive files
+appsettings.json
+appsettings.*.json
+.env
+secrets.json

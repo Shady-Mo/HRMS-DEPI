@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\DEPI_Project.csproj": {}
+    "E:\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\DEPI_Project.csproj": {}
   },
   "projects": {
-    "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\DEPI_Project.csproj": {
+    "E:\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\DEPI_Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\DEPI_Project.csproj",
+        "projectUniqueName": "E:\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\DEPI_Project.csproj",
         "projectName": "DEPI_Project",
-        "projectPath": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\DEPI_Project.csproj",
+        "projectPath": "E:\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\DEPI_Project.csproj",
         "packagesPath": "C:\\Users\\Shady\\.nuget\\packages\\",
-        "outputPath": "E:\\Programs\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\obj\\",
+        "outputPath": "E:\\HRMS_Project-master\\HRMS_Project-master\\DEPI_Project\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -53,6 +53,10 @@
             "ClosedXML": {
               "target": "Package",
               "version": "[0.104.2, )"
+            },
+            "DotNetEnv": {
+              "target": "Package",
+              "version": "[3.1.1, )"
             },
             "EPPlus": {
               "target": "Package",

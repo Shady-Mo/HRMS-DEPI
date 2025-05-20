@@ -1,16 +1,16 @@
 ﻿<Project>
   <ItemGroup>
-    <StaticWebAssetEndpoint Include="_content/DEPI_Project/.3tttkdwvsf.gitignore">
+    <StaticWebAssetEndpoint Include="_content/DEPI_Project/.699bx7bxs0.gitignore">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\.gitignore'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"3tttkdwvsf"},{"Name":"integrity","Value":"sha256-J\u002BRTapgMKMU9W7QBY1wsXYHQCVf2TxceSIQCY6HSjgU="},{"Name":"label","Value":"_content/DEPI_Project/.gitignore"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"517"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022J\u002BRTapgMKMU9W7QBY1wsXYHQCVf2TxceSIQCY6HSjgU=\u0022"},{"Name":"Last-Modified","Value":"Fri, 16 May 2025 08:23:29 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"699bx7bxs0"},{"Name":"integrity","Value":"sha256-Zs93ZD4pxHasw2mHOnRCGTlXYCfjcKbkxrhL6\u002B7/dec="},{"Name":"label","Value":"_content/DEPI_Project/.gitignore"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"602"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022Zs93ZD4pxHasw2mHOnRCGTlXYCfjcKbkxrhL6\u002B7/dec=\u0022"},{"Name":"Last-Modified","Value":"Tue, 20 May 2025 17:37:52 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/DEPI_Project/.gitignore">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\.gitignore'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-J\u002BRTapgMKMU9W7QBY1wsXYHQCVf2TxceSIQCY6HSjgU="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"517"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022J\u002BRTapgMKMU9W7QBY1wsXYHQCVf2TxceSIQCY6HSjgU=\u0022"},{"Name":"Last-Modified","Value":"Fri, 16 May 2025 08:23:29 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Zs93ZD4pxHasw2mHOnRCGTlXYCfjcKbkxrhL6\u002B7/dec="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"602"},{"Name":"Content-Type","Value":"application/octet-stream"},{"Name":"ETag","Value":"\u0022Zs93ZD4pxHasw2mHOnRCGTlXYCfjcKbkxrhL6\u002B7/dec=\u0022"},{"Name":"Last-Modified","Value":"Tue, 20 May 2025 17:37:52 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/DEPI_Project/assets/css/style-preset.8t285kxd1h.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\css\style-preset.css'))</AssetFile>

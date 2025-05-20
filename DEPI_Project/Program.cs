@@ -57,7 +57,8 @@ namespace DEPI_Project
 
             app.UseRouting();
 
-            StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
+            DotNetEnv.Env.Load();
+            StripeConfiguration.ApiKey = Environment.GetEnvironmentVariable("STRIPE_SECRET_KEY");
 
             app.UseAuthentication();
             app.UseAuthorization();

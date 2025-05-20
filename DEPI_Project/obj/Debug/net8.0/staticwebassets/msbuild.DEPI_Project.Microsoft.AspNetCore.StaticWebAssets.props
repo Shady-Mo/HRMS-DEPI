@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>3tttkdwvsf</Fingerprint>
-      <Integrity>J+RTapgMKMU9W7QBY1wsXYHQCVf2TxceSIQCY6HSjgU=</Integrity>
+      <Fingerprint>699bx7bxs0</Fingerprint>
+      <Integrity>Zs93ZD4pxHasw2mHOnRCGTlXYCfjcKbkxrhL6+7/dec=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\.gitignore'))</OriginalItemSpec>
