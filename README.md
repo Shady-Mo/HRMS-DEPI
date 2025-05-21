@@ -27,13 +27,13 @@ Welcome to the **HRMS Project**! This repository is a robust, web-based applicat
 - [Contact](#contact)
 
 ---
-
+<a name="about-the-project"></a>
 ## 📖 About the Project
 
 The **HRMS Project** is designed to simplify and automate HR operations, enabling organizations to focus on their core activities. With its robust feature set and modular architecture, HRMS ensures a seamless experience for managing HR workflows.
 
 ---
-
+<a name="features"></a>
 ## ✨ Features
 
 ### Core Functionalities
@@ -66,7 +66,7 @@ The **HRMS Project** is designed to simplify and automate HR operations, enablin
   - Secure login and role-based access control.
 
 ---
-
+<a name="technologies-used"></a>
 ## 💻 Technologies Used
 
 This project utilizes modern web technologies for a robust and efficient solution:
@@ -86,7 +86,7 @@ This project utilizes modern web technologies for a robust and efficient solutio
 - SQL Server (or alternative relational DB, configurable).
 
 ---
-
+<a name="architecture-overview"></a>
 ## 🏛 Architecture Overview
 
 This project follows the **MVC (Model-View-Controller)** design pattern:
@@ -106,7 +106,7 @@ This project follows the **MVC (Model-View-Controller)** design pattern:
 The project also implements a **Repository Pattern** for organizing data access logic, ensuring modularity and maintainability.
 
 ---
-
+<a name="authentication-and-authorization"></a>
 ## 🔐 Authentication and Authorization
 
 The HRMS Project incorporates robust **authentication** and **authorization** mechanisms to ensure secure access control and user management. These features are implemented using **ASP.NET Identity** with role-based access control.
@@ -153,7 +153,7 @@ The HRMS Project incorporates robust **authentication** and **authorization** me
   - Upon successful login, users are redirected to role-specific dashboards (e.g., Admin, Manager, Employee).
 
 ---
-
+<a name="installation"></a>
 ## 🛠 Installation
 
 ### 🔒 Security & Configuration Notice
@@ -218,7 +218,7 @@ STRIPE_SECRET_KEY=your_stripe_secret_key_here
    - Start the application using `Ctrl+F5`.
 
 ---
-
+<a name="usage"></a>
 ## 🚀 Usage
 
 1. **Access the Application:**
@@ -232,7 +232,7 @@ STRIPE_SECRET_KEY=your_stripe_secret_key_here
    - Update organizational settings to tailor the system to your needs.
 
 ---
-
+<a name="contributing"></a>
 ## 🤝 Contributing
 
 We welcome contributions to enhance the HRMS Project. To get started:
@@ -252,7 +252,7 @@ We welcome contributions to enhance the HRMS Project. To get started:
 4. **Open a pull request.**
 
 ---
-
+<a name="contact"></a>
 ## 🔗 Contact
 
 - **Author**: [Shady-Mo](https://github.com/Shady-Mo)
