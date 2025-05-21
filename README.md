@@ -187,8 +187,6 @@ STRIPE_SECRET_KEY=your_stripe_secret_key_here
 }
 ```
 
-> **Make sure these files are never committed to GitHub or any public repository.**
-
 ### Prerequisites
 
 - Install [Visual Studio](https://visualstudio.microsoft.com/) with .NET Core/ASP.NET support.
