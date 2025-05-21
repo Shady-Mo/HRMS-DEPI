@@ -256,5 +256,5 @@ We welcome contributions to enhance the HRMS Project. To get started:
 ## 🔗 Contact
 
 - **Author**: [Shady-Mo](https://github.com/Shady-Mo)
-- **Repository**: [HRMS Project](https://github.com/basmallasaid/HRMS_Project)
-- **Issues**: [Report an Issue](https://github.com/basmallasaid/HRMS_Project/issues)
+- **Repository**: [HRMS Project](https://github.com/Shady-Mo/HRMS_Project)
+- **Issues**: [Report an Issue](https://github.com/Shady-Mo/HRMS_Project/issues)
