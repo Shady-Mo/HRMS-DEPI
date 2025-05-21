@@ -28,7 +28,6 @@ Welcome to the **HRMS Project**! This repository is a robust, web-based applicat
 
 ---
 <a name="about-the-project"></a>
-
 ## 📖 About the Project
 
 The **HRMS Project** is designed to simplify and automate HR operations, enabling organizations to focus on their core activities. With its robust feature set and modular architecture, HRMS ensures a seamless experience for managing HR workflows.
