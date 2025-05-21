@@ -24,6 +24,7 @@ Welcome to the **HRMS Project**! This repository is a robust, web-based applicat
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
+- [Contact](#contact)
 
 ---
 
@@ -35,7 +36,8 @@ The **HRMS Project** is designed to simplify and automate HR operations, enablin
 
 ## ✨ Features
 
-### Core Functionalities:
+### Core Functionalities
+
 - **Employee Management**:
   - Add, update, and manage employee profiles.
   - Track employee attendance and performance.
@@ -54,7 +56,8 @@ The **HRMS Project** is designed to simplify and automate HR operations, enablin
   - Manage projects and assign tasks to employees.
   - Monitor project progress and deadlines.
 
-### Advanced Features:
+### Advanced Features
+
 - **Reports and Analytics**:
   - Generate insightful HR reports.
   - Visualize data through charts and graphs.
@@ -62,25 +65,25 @@ The **HRMS Project** is designed to simplify and automate HR operations, enablin
 - **Authentication and Authorization**:
   - Secure login and role-based access control.
 
-- **Notifications**:
-  - Email and in-app notifications for important updates.
-
 ---
 
 ## 💻 Technologies Used
 
 This project utilizes modern web technologies for a robust and efficient solution:
 
-- **Frontend**:
-  - **HTML**: For structuring web pages.
-  - **CSS**: For responsive and visually appealing designs.
-  - **JavaScript**: For dynamic and interactive UI components.
+### Frontend
 
-- **Backend**:
-  - **C#**: Implements business logic and controllers (ASP.NET Core MVC).
+- **HTML**: For structuring web pages.
+- **CSS**: For responsive and visually appealing designs.
+- **JavaScript**: For dynamic and interactive UI components.
 
-- **Database**:
-  - SQL Server (or alternative relational DB, configurable).
+### Backend
+
+- **C#**: Implements business logic and controllers (ASP.NET Core MVC).
+
+### Database
+
+- SQL Server (or alternative relational DB, configurable).
 
 ---
 
@@ -109,6 +112,7 @@ The project also implements a **Repository Pattern** for organizing data access 
 The HRMS Project incorporates robust **authentication** and **authorization** mechanisms to ensure secure access control and user management. These features are implemented using **ASP.NET Identity** with role-based access control.
 
 ### Authentication
+
 - **Login Process**:
   - Users authenticate using their email and password via the `AuthController`. 
   - The `SignInManager` validates credentials and manages user sessions.
@@ -131,6 +135,7 @@ The HRMS Project incorporates robust **authentication** and **authorization** me
   - Passwords are securely hashed using ASP.NET Identity's built-in functionality.
 
 ### Authorization
+
 - **Role-Based Access Control (RBAC)**:
   - The project uses roles such as **Admin**, **Manager**, and **Employee** to control access to specific features.
   - Role validation is performed using the `UserManager` and `SignInManager`.
@@ -139,7 +144,8 @@ The HRMS Project incorporates robust **authentication** and **authorization** me
   - Controllers and actions are decorated with `[Authorize]` attributes to enforce access restrictions.
   - Example: Only employees and managers can access features like profile and leave management.
 
-### Additional Features
+### Additional Security Features
+
 - **Session Management**:
   - User sessions are managed securely, and users can log out at any time.
 
@@ -150,28 +156,63 @@ The HRMS Project incorporates robust **authentication** and **authorization** me
 
 ## 🛠 Installation
 
+### 🔒 Security & Configuration Notice
+
+> ⚠️ **Important**: This project uses sensitive configuration files such as `appsettings.json` and `.env` which are intentionally excluded from version control using `.gitignore`.
+
+These files contain confidential data, including:
+- Stripe Secret API Keys
+- Database connection strings
+- Environment-specific settings
+
+To run the project locally, you must create these files manually.
+
+#### Example `.env`
+```env
+STRIPE_SECRET_KEY=your_stripe_secret_key_here
+```
+
+#### Example `appsettings.json`
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "your_sql_connection_string"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  }
+}
+```
+
+> **Make sure these files are never committed to GitHub or any public repository.**
+
 ### Prerequisites
+
 - Install [Visual Studio](https://visualstudio.microsoft.com/) with .NET Core/ASP.NET support.
 - Install [SQL Server](https://www.microsoft.com/en-us/sql-server) or your preferred relational database.
 - Install [Node.js](https://nodejs.org/) (if frontend dependencies are managed via npm).
 
-### Steps
-1. Clone the repository:
+### Installation Steps
+
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/basmallasaid/HRMS_Project.git
    ```
-2. Navigate to the project directory:
+2. **Navigate to the project directory:**
    ```bash
    cd HRMS_Project
    ```
-3. Set up the database:
+3. **Set up the database:**
    - Create a new database in SQL Server.
    - Run the SQL scripts provided in the `db` directory to create the schema and populate data.
 
-4. Configure the connection string:
+4. **Configure the connection string:**
    - Update the connection string in `appsettings.json` with your database credentials.
 
-5. Run the application:
+5. **Run the application:**
    - Open the `.sln` file in Visual Studio.
    - Restore NuGet packages and build the solution.
    - Start the application using `Ctrl+F5`.
@@ -180,14 +221,14 @@ The HRMS Project incorporates robust **authentication** and **authorization** me
 
 ## 🚀 Usage
 
-1. **Access the Application**:
+1. **Access the Application:**
    - Open your browser and navigate to `http://localhost:[port]`.
 
-2. **Explore Features**:
+2. **Explore Features:**
    - Log in using the default admin credentials or create a new user account.
    - Navigate through the dashboard to access various modules like Employee Management, Payroll, and Leave Management.
 
-3. **Customize Settings**:
+3. **Customize Settings:**
    - Update organizational settings to tailor the system to your needs.
 
 ---
@@ -196,19 +237,19 @@ The HRMS Project incorporates robust **authentication** and **authorization** me
 
 We welcome contributions to enhance the HRMS Project. To get started:
 
-1. Fork the repository and create your feature branch:
+1. **Fork the repository and create your feature branch:**
    ```bash
    git checkout -b feature/YourFeatureName
    ```
-2. Make your changes and commit them:
+2. **Make your changes and commit them:**
    ```bash
    git commit -m "Add your feature"
    ```
-3. Push to the branch:
+3. **Push to the branch:**
    ```bash
    git push origin feature/YourFeatureName
    ```
-4. Open a pull request.
+4. **Open a pull request.**
 
 ---
 
