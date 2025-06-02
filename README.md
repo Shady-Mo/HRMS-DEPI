@@ -197,7 +197,7 @@ STRIPE_SECRET_KEY=your_stripe_secret_key_here
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/basmallasaid/HRMS_Project.git
+   git clone https://github.com/Shady-Mo/HRMS_Project.git
    ```
 2. **Navigate to the project directory:**
    ```bash
